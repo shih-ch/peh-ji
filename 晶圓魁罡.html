@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>論子平 | 晶圓魁罡詳批</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f0eee9; /* 更深沉的古紙色 */
+            color: #2c2c2c;
+            line-height: 1.8;
+        }
+        h1, h2, h3, h4, .chinese-font {
+            font-family: 'Noto Serif TC', serif;
+        }
+        .pillar-card {
+            writing-mode: horizontal-tb;
+        }
+        .stem-branch {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            font-weight: 900;
+        }
+        /* 五行顏色定義 */
+        .bazi-metal { color: #B8860B; } /* 金：暗金 */
+        .bazi-wood { color: #2E8B57; }  /* 木：深綠 */
+        .bazi-water { color: #1E90FF; } /* 水：海藍 */
+        .bazi-fire { color: #cc0000; }  /* 火：赤紅 */
+        .bazi-earth { color: #8B4513; } /* 土：赭褐 */
+
+        .paper-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .bg-card {
+            background-color: #fffaf5; /* 微微泛黃的紙張 */
+        }
+        /* 浮水印效果 */
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 15vw;
+            opacity: 0.02;
+            pointer-events: none;
+            font-family: 'Noto Serif TC', serif;
+            z-index: 0;
+            white-space: nowrap;
+        }
+
+        /* 懸浮羅盤視窗樣式 */
+        #float-compass {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(255, 250, 240, 0.98);
+            border: 1px solid #d6d3d1;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 100;
+            padding: 15px;
+            width: auto;
+            max-width: 95vw;
+            display: none; /* 預設隱藏 */
+            transition: all 0.3s ease;
+        }
+        
+        #compass-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #8B0000;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 99;
+            transition: transform 0.2s;
+        }
+        #compass-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .compass-grid {
+            display: flex;
+            flex-direction: row; /* 由左至右排列：時->日->月->年->大運->流年 */
+            gap: 8px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .compass-pillar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+            padding: 8px 4px;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
+            min-width: 40px;
+        }
+        
+        .compass-pillar.dynamic {
+            background-color: #fffbeb; /* 動態柱底色稍微不同 */
+            border-color: #fcd34d;
+        }
+
+        .compass-header {
+            font-size: 10px;
+            color: #78716c;
+            margin-bottom: 4px;
+            writing-mode: vertical-lr; /* 直書標題 */
+            letter-spacing: 2px;
+        }
+
+        .compass-char {
+            font-size: 20px;
+            font-weight: 900;
+            font-family: 'Noto Serif TC', serif;
+            line-height: 1.1;
+        }
+        
+        .compass-footer {
+            font-size: 10px;
+            color: #a8a29e;
+            margin-top: 4px;
+        }
+
+        @media (max-width: 640px) {
+            #float-compass {
+                bottom: 90px; /* 手機版避開底部按鈕區域 */
+                right: 50%;
+                transform: translateX(50%);
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-8">
+
+    <div class="watermark">晶圓魁罡</div>
+
+    <!-- 懸浮開關按鈕 -->
+    <div id="compass-toggle" onclick="toggleCompass()">
+        <i class="fas fa-compass"></i>
+    </div>
+
+    <!-- 懸浮八字羅盤 -->
+    <div id="float-compass">
+        <div class="flex justify-between items-center mb-3 border-b border-stone-200 pb-2">
+            <span class="text-stone-800 font-bold text-sm"><i class="fas fa-crosshairs mr-1"></i> 速查羅盤</span>
+            <div class="flex items-center gap-2">
+                <button onclick="changeCompassYear(-1)" class="w-6 h-6 rounded bg-stone-200 hover:bg-stone-300 flex items-center justify-center text-xs"><i class="fas fa-minus"></i></button>
+                <span id="compass-year" class="font-mono font-bold text-red-800 text-lg">2025</span>
+                <span id="compass-age" class="text-xs text-stone-500">(95歲)</span>
+                <button onclick="changeCompassYear(1)" class="w-6 h-6 rounded bg-stone-200 hover:bg-stone-300 flex items-center justify-center text-xs"><i class="fas fa-plus"></i></button>
+            </div>
+            <button onclick="toggleCompass()" class="text-stone-400 hover:text-stone-600 ml-2"><i class="fas fa-times"></i></button>
+        </div>
+
+        <div class="compass-grid">
+            <!-- 時柱 -->
+            <div class="compass-pillar">
+                <span class="compass-header">時柱</span>
+                <span class="compass-char bazi-fire">丙</span>
+                <span class="compass-char bazi-water">子</span>
+                <span class="compass-footer">晚</span>
+            </div>
+            <!-- 日柱 -->
+            <div class="compass-pillar" style="border: 2px solid #8B0000; background: #fff5f5;">
+                <span class="compass-header text-red-800 font-bold">日主</span>
+                <span class="compass-char bazi-metal">庚</span>
+                <span class="compass-char bazi-earth">戌</span>
+                <span class="compass-footer">元</span>
+            </div>
+            <!-- 月柱 -->
+            <div class="compass-pillar">
+                <span class="compass-header">月柱</span>
+                <span class="compass-char bazi-fire">丙</span>
+                <span class="compass-char bazi-metal">申</span>
+                <span class="compass-footer">青</span>
+            </div>
+            <!-- 年柱 -->
+            <div class="compass-pillar">
+                <span class="compass-header">年柱</span>
+                <span class="compass-char bazi-metal">辛</span>
+                <span class="compass-char bazi-earth">未</span>
+                <span class="compass-footer">少</span>
+            </div>
+            
+            <!-- 分隔線 -->
+            <div class="w-px bg-stone-300 h-24 mx-1"></div>
+
+            <!-- 大運 (動態) -->
+            <div class="compass-pillar dynamic">
+                <span class="compass-header text-stone-600 font-bold">大運</span>
+                <span id="cp-dayun-gan" class="compass-char">--</span>
+                <span id="cp-dayun-zhi" class="compass-char">--</span>
+            </div>
+            <!-- 流年 (動態) -->
+            <div class="compass-pillar dynamic" style="border-color: #f59e0b;">
+                <span class="compass-header text-yellow-700 font-bold">流年</span>
+                <span id="cp-liunian-gan" class="compass-char">--</span>
+                <span id="cp-liunian-zhi" class="compass-char">--</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto bg-card p-8 md:p-16 paper-shadow relative z-10 border-t-8 border-red-900 mb-12">
+        
+        <!-- Header -->
+        <header class="text-center mb-16 border-b-2 border-stone-300 pb-10">
+            <div class="inline-block px-6 py-2 bg-red-900 text-white text-sm tracking-[0.3em] mb-6 shadow-sm">論子平・詳批版</div>
+            <h1 class="text-4xl md:text-6xl font-black mb-6 bazi-fire chinese-font tracking-wide">八字命理終極詳批</h1>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-stone-700 mt-8 bg-stone-100 p-6 rounded-lg border border-stone-200">
+                <div class="flex flex-col">
+                    <span class="text-xs text-stone-500 uppercase tracking-widest mb-1">造主代號</span>
+                    <span class="font-bold text-lg">晶圓魁罡 (乾造)</span>
+                </div>
+                <div class="flex flex-col md:border-l md:border-r border-stone-300">
+                    <span class="text-xs text-stone-500 uppercase tracking-widest mb-1">西曆生辰</span>
+                    <span class="font-bold text-lg">1931年 08月 23日 00:37</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xs text-stone-500 uppercase tracking-widest mb-1">農曆生辰</span>
+                    <span class="font-bold text-lg">辛未年 七月 初十 早子時</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- The Four Pillars Chart (Static Original) -->
+        <section class="mb-16">
+            <div class="flex items-center mb-8">
+                <span class="text-4xl mr-4 bazi-fire opacity-50 font-serif">01</span>
+                <h2 class="text-3xl font-bold border-b-4 border-red-900 pb-1 flex-grow chinese-font">命盤原局結構</h2>
+            </div>
+            
+            <div class="grid grid-cols-4 gap-4 md:gap-8 text-center">
+                <!-- 時柱 -->
+                <div class="bg-white p-6 border-2 border-stone-200 rounded-lg shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 bg-stone-100 px-2 py-1 text-xs text-stone-500 rounded-bl">晚年</div>
+                    <span class="text-xs text-stone-400 mb-3 tracking-[0.2em] block uppercase">時柱 Time</span>
+                    <span class="text-sm font-bold text-stone-600 mb-2 block">七殺</span>
+                    <div class="stem-branch bazi-fire mb-2 group-hover:scale-110 transition-transform duration-500">丙</div>
+                    <div class="stem-branch bazi-water mb-4 group-hover:scale-110 transition-transform duration-500">子</div>
+                    <div class="text-xs text-stone-500 mt-2 border-t border-stone-100 pt-3 w-full text-left pl-4 space-y-1">
+                        <div class="flex justify-between"><span class="bazi-water">癸 傷官</span> <span class="text-stone-300">本氣</span></div>
+                    </div>
+                    <div class="mt-4 pt-2 border-t border-dashed border-stone-300">
+                        <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">澗下水</span>
+                        <span class="text-xs text-stone-400 ml-2">空: 申酉</span>
+                    </div>
+                </div>
+
+                <!-- 日柱 (Day Master) -->
+                <div class="bg-red-50 p-6 border-2 border-red-800 rounded-lg shadow-lg transform scale-105 relative z-10">
+                    <div class="absolute top-0 right-0 bg-red-800 text-white px-2 py-1 text-xs rounded-bl">元神 (中年)</div>
+                    <span class="text-xs text-red-800 mb-3 tracking-[0.2em] block uppercase font-bold">日柱 Day</span>
+                    <span class="text-sm font-bold text-stone-600 mb-2 block">日主 (己身)</span>
+                    <div class="stem-branch bazi-metal mb-2">庚</div>
+                    <div class="stem-branch bazi-earth mb-4">戌</div>
+                    <div class="text-xs text-stone-600 mt-2 border-t border-red-200 pt-3 w-full text-left pl-4 space-y-1">
+                        <div class="flex justify-between"><span class="bazi-earth">戊 偏印</span> <span class="text-red-400">本氣</span></div>
+                        <div class="flex justify-between"><span class="bazi-metal">辛 劫財</span> <span class="text-stone-400">中氣</span></div>
+                        <div class="flex justify-between"><span class="bazi-fire">丁 正官</span> <span class="text-stone-400">餘氣</span></div>
+                    </div>
+                    <div class="mt-4 pt-2 border-t border-dashed border-red-300">
+                        <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded font-bold">釵釧金</span>
+                        <span class="text-xs text-red-800 ml-2 font-bold">魁罡格</span>
+                    </div>
+                </div>
+
+                <!-- 月柱 -->
+                <div class="bg-white p-6 border-2 border-stone-200 rounded-lg shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 bg-stone-100 px-2 py-1 text-xs text-stone-500 rounded-bl">青年</div>
+                    <span class="text-xs text-stone-400 mb-3 tracking-[0.2em] block uppercase">月柱 Month</span>
+                    <span class="text-sm font-bold text-stone-600 mb-2 block">七殺</span>
+                    <div class="stem-branch bazi-fire mb-2 group-hover:scale-110 transition-transform duration-500">丙</div>
+                    <div class="stem-branch bazi-metal mb-4 group-hover:scale-110 transition-transform duration-500">申</div>
+                    <div class="text-xs text-stone-500 mt-2 border-t border-stone-100 pt-3 w-full text-left pl-4 space-y-1">
+                        <div class="flex justify-between"><span class="bazi-metal">庚 比肩</span> <span class="text-stone-300">本氣</span></div>
+                        <div class="flex justify-between"><span class="bazi-water">壬 食神</span> <span class="text-stone-300">中氣</span></div>
+                        <div class="flex justify-between"><span class="bazi-earth">戊 偏印</span> <span class="text-stone-300">餘氣</span></div>
+                    </div>
+                    <div class="mt-4 pt-2 border-t border-dashed border-stone-300">
+                        <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">山下火</span>
+                        <span class="text-xs text-stone-400 ml-2">建祿格</span>
+                    </div>
+                </div>
+
+                <!-- 年柱 -->
+                <div class="bg-white p-6 border-2 border-stone-200 rounded-lg shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 bg-stone-100 px-2 py-1 text-xs text-stone-500 rounded-bl">少年</div>
+                    <span class="text-xs text-stone-400 mb-3 tracking-[0.2em] block uppercase">年柱 Year</span>
+                    <span class="text-sm font-bold text-stone-600 mb-2 block">劫財</span>
+                    <div class="stem-branch bazi-metal mb-2 group-hover:scale-110 transition-transform duration-500">辛</div>
+                    <div class="stem-branch bazi-earth mb-4 group-hover:scale-110 transition-transform duration-500">未</div>
+                    <div class="text-xs text-stone-500 mt-2 border-t border-stone-100 pt-3 w-full text-left pl-4 space-y-1">
+                        <div class="flex justify-between"><span class="bazi-earth">己 正印</span> <span class="text-stone-300">本氣</span></div>
+                        <div class="flex justify-between"><span class="bazi-fire">丁 正官</span> <span class="text-stone-300">中氣</span></div>
+                        <div class="flex justify-between"><span class="bazi-wood">乙 正財</span> <span class="text-stone-300">餘氣</span></div>
+                    </div>
+                    <div class="mt-4 pt-2 border-t border-dashed border-stone-300">
+                        <span class="text-xs bg-yellow-600 text-white px-2 py-1 rounded">路旁土</span>
+                        <span class="text-xs text-stone-400 ml-2">空: 戌亥</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deep Analysis: Wuxing & Patterns -->
+        <section class="mb-16">
+             <div class="flex items-center mb-8">
+                <span class="text-4xl mr-4 bazi-fire opacity-50 font-serif">02</span>
+                <h2 class="text-3xl font-bold border-b-4 border-red-900 pb-1 flex-grow chinese-font">五行強弱與格局詳論</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Left: Five Elements Analysis -->
+                <div class="bg-white p-6 rounded shadow-sm border border-stone-200">
+                    <h3 class="text-xl font-bold text-stone-800 mb-4 flex items-center">
+                        <span class="w-1 h-6 bg-stone-800 mr-2"></span>五行能量計量
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-bold bazi-metal">金 (元神/比劫)</span>
+                                <span class="font-bold">極強 (45%)</span>
+                            </div>
+                            <div class="w-full bg-stone-100 rounded-full h-2.5">
+                                <div class="bg-yellow-600 h-2.5 rounded-full" style="width: 45%; background-color: #B8860B;"></div>
+                            </div>
+                            <p class="text-xs text-stone-500 mt-1">庚金生於申月（祿地），坐下戌土生身，年干透辛。身強無疑。</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-bold bazi-fire">火 (官殺/權力)</span>
+                                <span class="font-bold">強旺 (30%)</span>
+                            </div>
+                            <div class="w-full bg-stone-100 rounded-full h-2.5">
+                                <div class="bg-red-600 h-2.5 rounded-full" style="width: 30%; background-color: #cc0000;"></div>
+                            </div>
+                            <p class="text-xs text-stone-500 mt-1">天干兩透丙火，未中有丁，戌中有丁。火煉真金。</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-bold bazi-earth">土 (印星/資源)</span>
+                                <span class="font-bold">中等 (15%)</span>
+                            </div>
+                            <div class="w-full bg-stone-100 rounded-full h-2.5">
+                                <div class="bg-stone-500 h-2.5 rounded-full" style="width: 15%; background-color: #8B4513;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-bold bazi-water">水 (食傷/智慧)</span>
+                                <span class="font-bold">偏弱 (8%)</span>
+                            </div>
+                            <div class="w-full bg-stone-100 rounded-full h-2.5">
+                                <div class="bg-blue-500 h-2.5 rounded-full" style="width: 8%; background-color: #1E90FF;"></div>
+                            </div>
+                            <p class="text-xs text-stone-500 mt-1">雖有申子半合水局，但被戌土阻隔，且天干無水透出。</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-bold bazi-wood">木 (財星/財富)</span>
+                                <span class="font-bold">極弱 (2%)</span>
+                            </div>
+                            <div class="w-full bg-stone-100 rounded-full h-2.5">
+                                <div class="bg-green-600 h-2.5 rounded-full" style="width: 2%; background-color: #2E8B57;"></div>
+                            </div>
+                            <p class="text-xs text-stone-500 mt-1">原局財星微弱，僅未中乙木餘氣。<strong>富貴全憑大運補財。</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Pattern Analysis -->
+                <div class="space-y-6">
+                    <div class="bg-stone-100 p-5 rounded border-l-4 border-yellow-600">
+                        <h4 class="font-bold text-lg mb-2 text-stone-800">1. 庚戌日「魁罡格」詳解</h4>
+                        <p class="text-sm text-stone-600 text-justify">
+                            「庚戌」為魁罡四日之一，主性格剛烈、聰明果斷。魁罡最怕刑衝，此造<strong>未戌相刑</strong>，暗示了內心的糾結與家族關係的緊張。但庚金生於申月為「建祿」，身強能任殺，這是典型的大將之風。魁罡入命，多主武職、法務、或企業高管，掌握生殺大權。
+                        </p>
+                    </div>
+
+                    <div class="bg-stone-100 p-5 rounded border-l-4 border-purple-600">
+                        <h4 class="font-bold text-lg mb-2 text-stone-800">2. 「身殺兩停」：富貴之源</h4>
+                        <p class="text-sm text-stone-600 text-justify">
+                            <strong class="text-purple-800">格局核心：</strong>庚金生於申月（身旺），天干見丙火七殺（殺旺）。這就是命理學上極為珍貴的<strong>「身殺兩停」</strong>。<br>
+                            <br>
+                            身強若無殺，則為頑鐵；殺旺若身弱，則被壓垮。唯有身強與殺旺勢均力敵，方能「以身扛殺，化殺為權」。這預示著命主在動盪或高壓環境中，能迅速崛起，獲得巨大的社會地位與權威。
+                        </p>
+                    </div>
+                    
+                    <div class="bg-stone-100 p-5 rounded border-l-4 border-blue-500">
+                        <h4 class="font-bold text-lg mb-2 text-stone-800">3. 「十靈日」：剛柔並濟的靈魂</h4>
+                        <p class="text-sm text-stone-600 text-justify">
+                            庚戌日同時也是「十靈日」之一。所謂十靈，主<strong>靈氣、直覺與洞察力</strong>。
+                            <br><br>
+                            這為命主剛硬的「魁罡」外殼下，注入了細膩的靈魂。命主不僅能衝鋒陷陣（武），更有極強的第六感與謀略（文）。這種「外剛內靈」的特質，使他成為一位既有鐵腕手段，又具深邃智慧的領導者。
+                        </p>
+                    </div>
+
+                    <div class="bg-stone-100 p-5 rounded border-l-4 border-red-600">
+                        <h4 class="font-bold text-lg mb-2 text-stone-800">4. 「丙辛合」的玄機：去殺留清</h4>
+                        <p class="text-sm text-stone-600 text-justify">
+                            天干兩見丙火（七殺），本是「官殺混雜」之象，容易導致多頭馬車、壓力過大。然而妙在年干「辛」金與月干「丙」火相合（丙辛合水）。
+                            <br><br>
+                            <strong>技術解讀：</strong>這個「合」非常關鍵。它合去了月干的殺，保留了時干的殺。這在命理上稱為<strong>「去濁留清」</strong>。
+                            <br>
+                            <strong>現實意義：</strong>代表命主早年會經歷一些合作或妥協（合），解決了早期的競爭對手，最終在中晚年獲得獨一無二的權力（時干獨殺）。這是一個從紛亂走向專制的過程。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Da Yun: Detailed Timeline -->
+        <section class="mb-16">
+            <div class="flex items-center mb-8">
+                <span class="text-4xl mr-4 bazi-fire opacity-50 font-serif">03</span>
+                <h2 class="text-3xl font-bold border-b-4 border-red-900 pb-1 flex-grow chinese-font">大運流年：人生起伏全解</h2>
+            </div>
+
+            <div class="relative border-l-4 border-stone-300 ml-4 md:ml-8 space-y-12">
+                
+                <!-- 1936-1945 -->
+                <div class="relative pl-8 md:pl-12">
+                    <span class="absolute -left-[11px] top-0 w-5 h-5 bg-stone-400 rounded-full border-4 border-stone-100"></span>
+                    <h3 class="text-xl font-bold text-stone-500 mb-2">1936 乙未大運 (5-14歲) <span class="text-sm font-normal">童年期</span></h3>
+                    <p class="text-stone-600">乙庚合，未戌刑。童年家教極嚴，或身體（尤其皮膚、呼吸道）多有小疾。家庭環境可能較為傳統保守，讓命主感到壓抑。</p>
+                </div>
+
+                <!-- 1946-1955 -->
+                <div class="relative pl-8 md:pl-12">
+                    <span class="absolute -left-[11px] top-0 w-5 h-5 bg-red-400 rounded-full border-4 border-stone-100"></span>
+                    <h3 class="text-xl font-bold text-stone-700 mb-2">1946 甲午大運 (15-24歲) <span class="text-sm font-normal">少年磨練</span></h3>
+                    <p class="text-stone-600">火勢極旺，七殺長生。少年時期壓力巨大，可能是在嚴苛的環境中度過。火煉秋金，雖然辛苦，但練就了鋼鐵般的意志。是成才的關鍵期。</p>
+                </div>
+
+                <!-- 1956-1965 -->
+                <div class="relative pl-8 md:pl-12">
+                    <span class="absolute -left-[11px] top-0 w-5 h-5 bg-stone-600 rounded-full border-4 border-stone-100"></span>
+                    <h3 class="text-xl font-bold text-stone-800 mb-2">1956 癸巳大運 (25-34歲) <span class="text-sm font-normal">職場起步</span></h3>
+                    <p class="text-stone-600">傷官透出，才華展現。雖有口舌是非，但憑藉過人的能力（巳申刑合），能在變動中抓住機會，在組織中嶄露頭角。</p>
+                </div>
+
+                <!-- 1966-1975 -->
+                <div class="relative pl-8 md:pl-12">
+                    <span class="absolute -left-[11px] top-0 w-5 h-5 bg-blue-500 rounded-full border-4 border-stone-100"></span>
+                    <h3 class="text-xl font-bold text-stone-800 mb-2">1966 壬辰大運 (35-44歲) <span class="text-sm font-normal">蟄伏與積累</span></h3>
+                    <p class="text-stone-600">申子辰三合水局！<br><strong>關鍵轉折：</strong>智慧大開，轉向幕後、策略規劃。水局潤局，化解燥氣，是人際最圓融、心情最舒暢的十年。但也因洩身太過，體力稍降。</p>
+                </div>
+
+                <!-- 1976-1985 (Golden Era Starts) -->
+                <div class="relative pl-8 md:pl-12">
+                    <span class="absolute -left-[14px] top-0 w-7 h-7 bg-green-600 rounded-full border-4 border-green-200 shadow-lg animate-pulse"></span>
+                    <h3 class="text-2xl font-black text-green-800 mb-2">1976 辛卯大運 (45-54歲) <span class="text-sm font-normal text-green-600">財富爆發期</span></h3>
+                    <div class="bg-green-50 p-4 rounded border-l-4 border-green-600">
+                        <p class="text-stone-800 font-bold mb-2">人生巔峰第一章：</p>
+                        <p class="text-stone-700">正財填補了原局無財的缺憾！且「卯戌合火」，財星合入妻宮，化為官殺。代表<strong>「因財得權」</strong>。事業版圖急劇擴張，不僅有地位，更有實質的財富積累。最輝煌的起點。</p>
+                    </div>
+                </div>
+
+                <!-- 1986-1995 (Peak Power) -->
+                <div class="relative pl-8 md:pl-12">
+                    <span class="absolute -left-[14px] top-0 w-7 h-7 bg-green-700 rounded-full border-4 border-green-200"></span>
+                    <h3 class="text-2xl font-black text-green-800 mb-2">1986 庚寅大運 (55-64歲) <span class="text-sm font-normal text-green-600">權力巔峰與變動</span></h3>
+                    <div class="bg-green-50 p-4 rounded border-l-4 border-green-600">
+                        <p class="text-stone-800 font-bold mb-2">衝擊與機遇並存：</p>
+                        <p class="text-stone-700">偏財更旺。但地支「寅申沖」（月令受衝）。伴隨著巨大變動——職位調動、移民、或重組。雖動盪，但木火相生，權勢依舊驚人。需注意交通與肝膽。</p>
+                    </div>
+                </div>
+
+                 <!-- 1996-2005 -->
+                 <div class="relative pl-8 md:pl-12">
+                    <span class="absolute -left-[11px] top-0 w-5 h-5 bg-stone-400 rounded-full border-4 border-stone-100"></span>
+                    <h3 class="text-xl font-bold text-stone-500 mb-2">1996 己丑大運 (65-74歲) <span class="text-sm font-normal">歸隱與守成</span></h3>
+                    <p class="text-stone-600">濕土生金晦火。運勢平穩，適合交棒退居二線，享受榮譽。</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Actionable Advice & Shen Sha -->
+        <section class="mb-12">
+            <div class="flex items-center mb-8">
+                <span class="text-4xl mr-4 bazi-fire opacity-50 font-serif">04</span>
+                <h2 class="text-3xl font-bold border-b-4 border-red-900 pb-1 flex-grow chinese-font">開運與造命指南</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Advice Card -->
+                <div class="bg-stone-800 text-stone-200 p-8 rounded-lg shadow-xl">
+                    <h3 class="text-2xl font-bold text-white mb-6 border-b border-stone-600 pb-2">喜用神與開運</h3>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <span class="text-stone-400 text-sm block mb-1">首選用神</span>
+                            <span class="text-3xl font-bold bazi-wood">木 (財)</span>
+                            <p class="text-xs text-stone-400 mt-2">原局缺木，見木則生火，財官雙美。木運是發跡之時。</p>
+                        </div>
+                        <div>
+                            <span class="text-stone-400 text-sm block mb-1">次選用神</span>
+                            <span class="text-3xl font-bold bazi-water">水 (食傷)</span>
+                            <p class="text-xs text-stone-400 mt-2">水能潤局調候，解金火之燥，主智慧與健康。</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-center">
+                            <span class="w-8 h-8 rounded bg-green-700 flex items-center justify-center mr-3 text-xs">色</span>
+                            <span>幸運色：<strong>墨綠、青碧、深藍</strong></span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="w-8 h-8 rounded bg-yellow-700 flex items-center justify-center mr-3 text-xs">方</span>
+                            <span>吉利方位：<strong>東方 (木)、北方 (水)</strong></span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="w-8 h-8 rounded bg-red-900 flex items-center justify-center mr-3 text-xs">業</span>
+                            <span>適合行業：<strong>軍警法界、重工業、建築、管理顧問</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Health & Lifestyle -->
+                <div class="bg-white p-8 rounded-lg border border-stone-200">
+                    <h3 class="text-2xl font-bold text-stone-800 mb-6 border-b border-stone-200 pb-2">養生與修煉</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-bold text-red-800 mb-1">體質弱點：燥金受剋</h4>
+                            <p class="text-sm text-stone-600">金主肺與大腸，受火剋且土燥。命主容易有<strong>便秘、痔瘡、呼吸道敏感、皮膚乾癢</strong>等問題。晚年需特別注意直腸與肺部保養。</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-blue-800 mb-1">調養方案</h4>
+                            <p class="text-sm text-stone-600">
+                                1. <strong>多喝水</strong>：這是最簡單也最重要的改運法。水能潤土生金。<br>
+                                2. <strong>居住環境</strong>：不宜太過乾燥或陽光直射過強，適合近水而居。<br>
+                                3. <strong>心性修煉</strong>：庚戌日主剛強，易折。需學會「以柔克剛」，練習書法、冥想或太極，以養水木之氣。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Celebrity Case Study (Retained) -->
+        <section class="mb-12 bg-slate-900 text-slate-100 p-8 md:p-12 rounded-lg shadow-2xl relative overflow-hidden">
+             <!-- Gold Decorative Line -->
+             <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-yellow-700 via-yellow-400 to-yellow-700"></div>
+             
+             <div class="flex items-center mb-8 relative z-10">
+                <span class="text-4xl mr-4 text-yellow-500 opacity-80 font-serif">05</span>
+                <h2 class="text-3xl font-bold border-b-4 border-yellow-500 pb-1 flex-grow chinese-font text-yellow-500">命造映照：半導體教父</h2>
+            </div>
+
+            <div class="relative z-10">
+                <div class="mb-8">
+                    <h3 class="text-2xl font-bold text-white mb-2">【晶圓魁罡】生平軌跡映射</h3>
+                    <p class="text-slate-400 text-sm italic">「此造依據所供生辰推演，對照其自傳與公開生平，竟與本報告之『煉獄成鋼』、『大器晚成』核心論點有著驚人的契合。」</p>
+                </div>
+
+                <div class="space-y-8">
+                    <!-- Case 1: Forged in Fire -->
+                    <div class="flex flex-col md:flex-row gap-6 border-b border-slate-700 pb-8">
+                        <div class="md:w-1/4 flex-shrink-0">
+                            <div class="flex items-center text-yellow-500 mb-2">
+                                <i class="fas fa-fire-alt text-xl mr-2"></i>
+                                <h4 class="font-bold text-lg">煉獄成鋼</h4>
+                            </div>
+                            <span class="text-xs text-slate-400 uppercase tracking-widest block mb-1">命格映射</span>
+                            <span class="text-sm text-slate-300">魁罡格 + 烈火鍛造</span>
+                        </div>
+                        <div class="md:w-3/4">
+                            <p class="text-slate-300 text-sm leading-relaxed mb-2">
+                                <strong class="text-white">生平對照：</strong>命主生於戰亂，少年輾轉遷徙。求學時經歷博士考失敗的「烈火焚身」，後在德州儀器(TI)極度高壓的競爭環境中工作25年。
+                            </p>
+                            <p class="text-slate-400 text-xs italic">正是這種高強度的「七殺」環境，將他這塊頑鐵鍛造成了堅韌的業界領袖，完美詮釋了庚金需火煉的命理真諦。</p>
+                        </div>
+                    </div>
+
+                    <!-- Case 2: Strategy -->
+                    <div class="flex flex-col md:flex-row gap-6 border-b border-slate-700 pb-8">
+                        <div class="md:w-1/4 flex-shrink-0">
+                            <div class="flex items-center text-yellow-500 mb-2">
+                                <i class="fas fa-balance-scale text-xl mr-2"></i>
+                                <h4 class="font-bold text-lg">去濁留清</h4>
+                            </div>
+                            <span class="text-xs text-slate-400 uppercase tracking-widest block mb-1">格局映射</span>
+                            <span class="text-sm text-slate-300">丙辛合 + 獨殺顯貴</span>
+                        </div>
+                        <div class="md:w-3/4">
+                            <p class="text-slate-300 text-sm leading-relaxed mb-2">
+                                <strong class="text-white">策略智慧：</strong>創立全球最大晶圓代工廠時，命主做出了巨大的「取捨」：只做製造，不與客戶競爭設計。
+                            </p>
+                            <p class="text-slate-400 text-xs italic">這就是「辛金合殺」的商業展現——透過承諾不競爭消除對手疑慮，轉化為合作夥伴，從而能專注於單一目標（時上獨殺），將製造工藝做到極致。</p>
+                        </div>
+                    </div>
+
+                    <!-- Case 3: Timeline -->
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="md:w-1/4 flex-shrink-0">
+                            <div class="flex items-center text-yellow-500 mb-2">
+                                <i class="fas fa-chart-line text-xl mr-2"></i>
+                                <h4 class="font-bold text-lg">大器晚成</h4>
+                            </div>
+                            <span class="text-xs text-slate-400 uppercase tracking-widest block mb-1">運勢映射</span>
+                            <span class="text-sm text-slate-300">56歲入木運・飛龍在天</span>
+                        </div>
+                        <div class="md:w-3/4">
+                            <p class="text-slate-300 text-sm leading-relaxed mb-2">
+                                <strong class="text-white">時間線吻合：</strong>報告預測「45歲後入木運，為此生最高峰」。命主54歲返台，56歲（1987年）創立半導體龍頭企業。
+                            </p>
+                            <p class="text-slate-400 text-xs italic">此時正值「庚寅」大運開端，強木滋殺，將他前半生累積的經驗（鋼），轉化為企業這個「絕世神兵」，確立了不可撼動的教父地位。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Background Decoration -->
+            <div class="absolute -bottom-20 -right-20 text-slate-800 opacity-20 transform rotate-12 pointer-events-none">
+                <i class="fas fa-microchip text-[15rem]"></i>
+            </div>
+        </section>
+
+        <!-- New Section: Late Life Analysis (96+) -->
+        <section class="mb-16">
+            <div class="flex items-center mb-8">
+                <span class="text-4xl mr-4 bazi-fire opacity-50 font-serif">06</span>
+                <h2 class="text-3xl font-bold border-b-4 border-red-900 pb-1 flex-grow chinese-font">晚運續批：爐火純青，生死玄關</h2>
+            </div>
+            
+            <div class="bg-red-50 p-6 rounded-lg border-l-8 border-red-900 mb-8">
+                <p class="text-stone-700 font-bold mb-2">針對高壽命造（96歲後）的深度推演</p>
+                <p class="text-stone-600 text-sm">
+                    鑑於此造生於 1931 年，至 2026 年將屆 96 歲高壽。論命重點轉為<strong>「壽元」、「精神品質」與「五行平衡」</strong>。
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <!-- Da Yun Analysis -->
+                <div class="bg-white p-6 rounded shadow border border-stone-200">
+                    <h3 class="text-xl font-bold text-red-800 mb-4 border-b border-red-100 pb-2">
+                        一、2026年後大運【丙戌】(96-105歲)
+                    </h3>
+                    <p class="text-stone-500 text-sm mb-4 italic">「老馬臥槽，烈火鑠金」</p>
+                    <ul class="space-y-3 text-sm text-stone-600">
+                        <li><strong class="text-stone-800">大運氣象：</strong>天干三丙透干（七殺攻身），地支未戌相刑。</li>
+                        <li><strong class="text-stone-800">總體運勢：</strong>極為躁熱剛烈。戌為火庫，丙火高透，如將成器之金再次投入烈火。</li>
+                        <li class="bg-red-50 p-2 rounded text-red-800 font-bold">
+                            <i class="fas fa-exclamation-triangle mr-2"></i>
+                            火多金鎔：極大的身體負擔，考驗抗炎能力與心血管功能。
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Future Outlook -->
+                <div class="bg-white p-6 rounded shadow border border-stone-200">
+                     <h3 class="text-xl font-bold text-green-800 mb-4 border-b border-green-100 pb-2">
+                        三、2027年及以後展望
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <span class="block font-bold text-stone-800">2027 丁未年 (97歲)</span>
+                            <p class="text-xs text-stone-600 mt-1">火氣稍緩，但未戌相刑仍需防脾胃消化道堵塞與熱毒。</p>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-stone-800">2028-2029 戊申/己酉年 (98-99歲)</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded mb-1">轉危為安</span>
+                            <p class="text-xs text-stone-600">金地助身，土洩火生金。若撐過前關，身體將神奇好轉，精神矍鑠。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Critical Years Analysis -->
+            <div class="mb-12">
+                <h3 class="text-xl font-bold text-stone-800 mb-6 flex items-center">
+                    <span class="w-1 h-6 bg-stone-800 mr-3"></span>
+                    二、近兩年流年吉凶與關鍵壽關
+                </h3>
+                
+                <div class="space-y-6">
+                    <!-- 2025 -->
+                    <div class="flex group">
+                        <div class="w-24 flex-shrink-0 text-stone-500 font-bold pt-1">
+                            2025 <br><span class="text-sm font-normal">乙巳 (95歲)</span>
+                        </div>
+                        <div class="flex-grow border-l-4 border-stone-300 pl-6 pb-2">
+                            <h4 class="font-bold text-stone-800 mb-1">木火相生，預熱之年</h4>
+                            <p class="text-sm text-stone-600 mb-2">巳申刑合（肺/大腸受傷）。</p>
+                            <div class="bg-stone-100 p-3 rounded text-sm text-stone-700">
+                                <span class="font-bold text-red-800">健康預警：</span> 呼吸系統（久咳、肺炎）、肢體防摔（神經痛、中風前兆）。
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2026 Critical Year -->
+                    <div class="flex group">
+                        <div class="w-24 flex-shrink-0 text-red-600 font-bold pt-1">
+                            2026 <br><span class="text-sm font-normal">丙午 (96歲)</span>
+                        </div>
+                        <div class="flex-grow border-l-4 border-red-600 pl-6 pb-2 relative">
+                            <span class="absolute -left-[22px] top-0 w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center text-xs shadow-lg animate-pulse">
+                                壽關
+                            </span>
+                            <h4 class="font-bold text-red-800 mb-1 text-lg">關鍵壽關：烈火焚身，群殺攻身</h4>
+                            <p class="text-sm text-stone-600 mb-3">
+                                四火攻一金（大運丙、流年丙、原局雙丙），地支午戌半合火局。此生火氣最旺、剋伐最重之年。
+                            </p>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-red-50 p-3 rounded border border-red-200">
+                                    <span class="block font-bold text-red-900 text-sm mb-1">心腦血管 (重中之重)</span>
+                                    <p class="text-xs text-red-800">火旺血熱，防血壓飆升、腦溢血、急性心梗。</p>
+                                </div>
+                                <div class="bg-red-50 p-3 rounded border border-red-200">
+                                    <span class="block font-bold text-red-900 text-sm mb-1">肺部衰竭</span>
+                                    <p class="text-xs text-red-800">四火剋金，肺功能受抑制，防呼吸困難、器官衰竭。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Health Advice -->
+             <div class="bg-stone-800 text-stone-200 p-8 rounded-lg shadow-xl">
+                <h3 class="text-xl font-bold text-white mb-4 border-b border-stone-600 pb-2">【養生調候建議】化解火旺金鎔</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="font-bold text-blue-400 mb-2">五行調候：補水降火</h4>
+                        <ul class="space-y-2 text-sm text-stone-300">
+                            <li><i class="fas fa-bed mr-2 text-stone-500"></i><strong>環境：</strong>宜居北方房間，床頭朝北。保持涼爽，忌悶熱。</li>
+                            <li><i class="fas fa-tshirt mr-2 text-stone-500"></i><strong>顏色：</strong>多穿深藍、黑、深灰。忌紅、紫、橙。</li>
+                            <li><i class="fas fa-utensils mr-2 text-stone-500"></i><strong>飲食：</strong>清淡流質，滋陰潤肺（銀耳、梨水）。忌燥熱補品（人參、鹿茸）。</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-yellow-400 mb-2">醫療與心性</h4>
+                        <ul class="space-y-2 text-sm text-stone-300">
+                            <li><i class="fas fa-user-md mr-2 text-stone-500"></i><strong>檢查：</strong>2025年底前詳查心肺功能。</li>
+                            <li><i class="fas fa-calendar-times mr-2 text-stone-500"></i><strong>避險：</strong>2026年夏季（農曆四五六月）火最旺，務必靜養，少客訪。</li>
+                            <li><i class="fas fa-heart mr-2 text-stone-500"></i><strong>心法：</strong>家人多順從（順為水），化解長輩焦躁。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-16 pt-10 border-t-2 border-stone-300 text-center">
+            <div class="mb-4">
+                <span class="chinese-font text-3xl font-bold text-stone-800">「命由天定，運由人造」</span>
+            </div>
+            <p class="text-stone-600 italic mb-8 max-w-2xl mx-auto">
+                從命主的人生實證中可見：命盤是劇本，而如何演繹在於個人。
+                生於憂患，在烈火中鍛造，最終憑藉智慧與魄力改變世界，這正是「庚戌魁罡」最完美的註腳。
+            </p>
+            <div class="text-xs text-stone-400 uppercase tracking-widest">
+                子平命理 | 2024 Ultimate Edition
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Script for Compass Logic -->
+    <script>
+        const stems = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
+        const branches = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
+        const wuxingMap = {
+            '甲': 'wood', '乙': 'wood', '寅': 'wood', '卯': 'wood',
+            '丙': 'fire', '丁': 'fire', '巳': 'fire', '午': 'fire',
+            '戊': 'earth', '己': 'earth', '辰': 'earth', '戌': 'earth', '丑': 'earth', '未': 'earth',
+            '庚': 'metal', '辛': 'metal', '申': 'metal', '酉': 'metal',
+            '壬': 'water', '癸': 'water', '亥': 'water', '子': 'water'
+        };
+        const colorClassMap = {
+            'wood': 'bazi-wood',
+            'fire': 'bazi-fire',
+            'earth': 'bazi-earth',
+            'metal': 'bazi-metal',
+            'water': 'bazi-water'
+        };
+
+        // Dayun Data (Reused logic)
+        const dayunData = [
+            { start: 1936, gan: '乙', zhi: '未' },
+            { start: 1946, gan: '甲', zhi: '午' },
+            { start: 1956, gan: '癸', zhi: '巳' },
+            { start: 1966, gan: '壬', zhi: '辰' },
+            { start: 1976, gan: '辛', zhi: '卯' },
+            { start: 1986, gan: '庚', zhi: '寅' },
+            { start: 1996, gan: '己', zhi: '丑' },
+            { start: 2006, gan: '戊', zhi: '子' },
+            { start: 2016, gan: '丁', zhi: '亥' },
+            { start: 2026, gan: '丙', zhi: '戌' },
+            { start: 2036, gan: '乙', zhi: '酉' }
+        ];
+
+        let compassYear = 2025;
+        const birthYear = 1931;
+
+        function getGanZhi(year) {
+            const offset = year - 4;
+            const ganIndex = offset % 10;
+            const zhiIndex = offset % 12;
+            return {
+                gan: stems[ganIndex >= 0 ? ganIndex : ganIndex + 10],
+                zhi: branches[zhiIndex >= 0 ? zhiIndex : zhiIndex + 12]
+            };
+        }
+
+        function toggleCompass() {
+            const compass = document.getElementById('float-compass');
+            if (compass.style.display === 'none' || compass.style.display === '') {
+                compass.style.display = 'block';
+                // Trigger animation by setting opacity shortly after display block
+                setTimeout(() => { compass.style.opacity = '1'; }, 10);
+            } else {
+                compass.style.display = 'none';
+                compass.style.opacity = '0';
+            }
+        }
+
+        function updateCompass() {
+            document.getElementById('compass-year').innerText = compassYear;
+            const age = compassYear - birthYear + 1;
+            document.getElementById('compass-age').innerText = `(${age}歲)`;
+
+            // 1. Calculate LiuNian
+            const ln = getGanZhi(compassYear);
+            renderCompassPillar('cp-liunian', ln.gan, ln.zhi);
+
+            // 2. Find DaYun
+            let currentDayun = null;
+            for (let i = 0; i < dayunData.length; i++) {
+                if (compassYear >= dayunData[i].start) {
+                    currentDayun = dayunData[i];
+                }
+            }
+
+            if (currentDayun) {
+                renderCompassPillar('cp-dayun', currentDayun.gan, currentDayun.zhi);
+            } else {
+                renderCompassPillar('cp-dayun', '?', '?');
+            }
+        }
+
+        function renderCompassPillar(prefix, gan, zhi) {
+            const ganEl = document.getElementById(prefix + '-gan');
+            const zhiEl = document.getElementById(prefix + '-zhi');
+
+            ganEl.innerText = gan;
+            zhiEl.innerText = zhi;
+
+            // Remove old color classes
+            ganEl.className = 'compass-char';
+            zhiEl.className = 'compass-char';
+
+            // Add new color classes
+            if (wuxingMap[gan]) ganEl.classList.add(colorClassMap[wuxingMap[gan]]);
+            if (wuxingMap[zhi]) zhiEl.classList.add(colorClassMap[wuxingMap[zhi]]);
+        }
+
+        function changeCompassYear(delta) {
+            compassYear += delta;
+            updateCompass();
+        }
+
+        // Initialize Compass
+        updateCompass();
+
+    </script>
+</body>
+</html>
