@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>論子平 - 貪財壞印白袍狂客</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Serif TC', serif;
+            background-color: #f7f5f0; /* 米色宣紙底 */
+            color: #2c2c2c;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d6d3ce' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .font-cali {
+            font-family: 'Ma Shan Zheng', cursive;
+        }
+        .pillar-box {
+            border: 2px solid #8b5a2b;
+            background-color: #fffaf0;
+        }
+        .stem {
+            color: #c0392b; /* 天干紅 */
+        }
+        .branch {
+            color: #2c3e50; /* 地支黑 */
+        }
+        .ten-god {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+        .section-title {
+            border-bottom: 2px solid #c0392b;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        .highlight-bg {
+            background-color: #e8ded2;
+        }
+        .chart-bar {
+            transition: width 1s ease-in-out;
+        }
+        /* Custom Scrollbar for inner containers */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        @media print {
+            body {
+                background-image: none;
+                background-color: white;
+            }
+            .no-print {
+                display: none;
+            }
+            .pillar-box {
+                border: 1px solid #000;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen pb-12">
+
+    <!-- Header -->
+    <header class="text-center py-10 relative overflow-hidden bg-stone-800 text-stone-100 shadow-lg">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+            <i class="fas fa-yin-yang fa-10x absolute -left-10 -top-10 rotate-45"></i>
+            <i class="fas fa-dragon fa-10x absolute -right-10 -bottom-10 opacity-50"></i>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-cali mb-2 text-amber-500">論子平 · 貪財壞印白袍狂客</h1>
+        <p class="text-lg md:text-xl font-light tracking-widest text-stone-300">八字命理詳批報告</p>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 relative z-10">
+        
+        <!-- Profile Card -->
+        <div class="bg-white rounded-lg shadow-xl p-6 mb-8 border-t-4 border-amber-600">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold text-stone-800"><i class="fas fa-user-circle mr-2 text-amber-600"></i>命主資訊</h2>
+                <span class="bg-stone-100 text-stone-600 px-3 py-1 rounded-full text-sm">乾造 (男命)</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-stone-700">
+                <div class="flex items-center space-x-3">
+                    <span class="w-20 font-bold text-stone-500">名號</span>
+                    <span class="text-xl font-bold">貪財壞印白袍狂客</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <span class="w-20 font-bold text-stone-500">生肖</span>
+                    <span>豬 (己亥)</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <span class="w-20 font-bold text-stone-500">西曆</span>
+                    <span>1959年 08月 06日 20:00</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <span class="w-20 font-bold text-stone-500">農曆</span>
+                    <span>己亥年 七月 初三日 戌時</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <span class="w-20 font-bold text-stone-500">命格</span>
+                    <span class="text-red-700 font-bold">正印格 / 身強</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <span class="w-20 font-bold text-stone-500">喜用</span>
+                    <span class="text-green-700 font-bold">木 (財)</span>、<span class="text-blue-700 font-bold">水 (食傷)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Bazi Chart -->
+        <div class="bg-white rounded-lg shadow-xl p-6 mb-8">
+            <h3 class="text-2xl font-cali text-center mb-6 text-stone-800 border-b border-stone-200 pb-2">八字排盤</h3>
+            
+            <div class="grid grid-cols-4 gap-2 md:gap-4 text-center">
+                <!-- Headers -->
+                <div class="text-sm text-stone-500 font-bold">時柱 (晚年)</div>
+                <div class="text-sm text-stone-500 font-bold">日柱 (中年)</div>
+                <div class="text-sm text-stone-500 font-bold">月柱 (青年)</div>
+                <div class="text-sm text-stone-500 font-bold">年柱 (幼年)</div>
+
+                <!-- Hour Pillar -->
+                <div class="pillar-box p-3 rounded flex flex-col items-center">
+                    <div class="ten-god mb-1">七殺</div>
+                    <div class="stem text-3xl font-bold mb-2 text-red-600">丙</div> <!-- Fire -->
+                    <div class="branch text-3xl font-bold mb-2 text-amber-700">戌</div> <!-- Earth -->
+                    <div class="text-xs text-stone-500 mt-2 border-t border-stone-300 w-full pt-1">
+                        <div>戊(偏印)</div>
+                        <div>辛(劫財)</div>
+                        <div>丁(正官)</div>
+                    </div>
+                    <div class="text-xs text-stone-400 mt-1">屋上土</div>
+                </div>
+
+                <!-- Day Pillar -->
+                <div class="pillar-box p-3 rounded flex flex-col items-center relative overflow-hidden bg-yellow-50">
+                    <div class="absolute top-0 right-0 bg-red-600 text-white text-xs px-1">元</div>
+                    <div class="ten-god mb-1">日主</div>
+                    <div class="stem text-3xl font-bold mb-2 text-amber-600">庚</div> <!-- Metal -->
+                    <div class="branch text-3xl font-bold mb-2 text-amber-600">申</div> <!-- Metal -->
+                    <div class="text-xs text-stone-500 mt-2 border-t border-stone-300 w-full pt-1">
+                        <div>庚(比肩)</div>
+                        <div>壬(食神)</div>
+                        <div>戊(偏印)</div>
+                    </div>
+                    <div class="text-xs text-stone-400 mt-1">石榴木</div>
+                </div>
+
+                <!-- Month Pillar -->
+                <div class="pillar-box p-3 rounded flex flex-col items-center">
+                    <div class="ten-god mb-1">劫財</div>
+                    <div class="stem text-3xl font-bold mb-2 text-amber-600">辛</div> <!-- Metal -->
+                    <div class="branch text-3xl font-bold mb-2 text-amber-700">未</div> <!-- Earth -->
+                    <div class="text-xs text-stone-500 mt-2 border-t border-stone-300 w-full pt-1">
+                        <div>己(正印)</div>
+                        <div>丁(正官)</div>
+                        <div>乙(正財)</div>
+                    </div>
+                    <div class="text-xs text-stone-400 mt-1">路旁土</div>
+                </div>
+
+                <!-- Year Pillar -->
+                <div class="pillar-box p-3 rounded flex flex-col items-center">
+                    <div class="ten-god mb-1">正印</div>
+                    <div class="stem text-3xl font-bold mb-2 text-amber-700">己</div> <!-- Earth -->
+                    <div class="branch text-3xl font-bold mb-2 text-blue-700">亥</div> <!-- Water -->
+                    <div class="text-xs text-stone-500 mt-2 border-t border-stone-300 w-full pt-1">
+                        <div>壬(食神)</div>
+                        <div>甲(偏財)</div>
+                    </div>
+                    <div class="text-xs text-stone-400 mt-1">平地木</div>
+                </div>
+            </div>
+            
+             <!-- Shen Sha (Gods) -->
+             <div class="mt-4 p-3 bg-stone-50 rounded text-sm text-center text-stone-600">
+                <span class="mx-2"><i class="fas fa-star text-yellow-500"></i> 文昌(年)</span>
+                <span class="mx-2"><i class="fas fa-star text-yellow-500"></i> 天乙貴人(年)</span>
+                <span class="mx-2"><i class="fas fa-bolt text-red-500"></i> 魁罡(時)</span>
+                <span class="mx-2"><i class="fas fa-gem text-blue-500"></i> 日祿(申)</span>
+            </div>
+        </div>
+
+        <!-- Five Elements Analysis -->
+        <div class="bg-white rounded-lg shadow-xl p-6 mb-8">
+            <h3 class="text-2xl font-cali mb-6 text-stone-800"><i class="fas fa-balance-scale mr-2 text-amber-600"></i>五行強弱分析</h3>
+            <p class="mb-4 text-stone-600 text-sm leading-relaxed">
+                日干為<strong class="text-amber-600">庚金</strong>，生於未月(土旺)，得令。地支申金得祿，印星(土)極旺相生。整體格局為<strong class="text-red-700">身極強</strong>。喜用神取木(疏土)、水(洩金)，忌神為土、金。
+            </p>
+
+            <div class="space-y-4">
+                <!-- Metal -->
+                <div class="flex items-center">
+                    <span class="w-12 font-bold text-amber-600">金</span>
+                    <div class="flex-1 bg-gray-200 rounded-full h-4 mx-2">
+                        <div class="bg-amber-500 h-4 rounded-full chart-bar" style="width: 45%;"></div>
+                    </div>
+                    <span class="w-12 text-right text-sm">45%</span>
+                    <span class="w-16 text-xs text-stone-400 ml-2">比劫(忌)</span>
+                </div>
+                <!-- Wood -->
+                <div class="flex items-center">
+                    <span class="w-12 font-bold text-green-600">木</span>
+                    <div class="flex-1 bg-gray-200 rounded-full h-4 mx-2">
+                        <div class="bg-green-600 h-4 rounded-full chart-bar" style="width: 15%;"></div>
+                    </div>
+                    <span class="w-12 text-right text-sm">15%</span>
+                    <span class="w-16 text-xs text-stone-400 ml-2">財星(喜)</span>
+                </div>
+                <!-- Water -->
+                <div class="flex items-center">
+                    <span class="w-12 font-bold text-blue-600">水</span>
+                    <div class="flex-1 bg-gray-200 rounded-full h-4 mx-2">
+                        <div class="bg-blue-500 h-4 rounded-full chart-bar" style="width: 15%;"></div>
+                    </div>
+                    <span class="w-12 text-right text-sm">15%</span>
+                    <span class="w-16 text-xs text-stone-400 ml-2">食傷(喜)</span>
+                </div>
+                <!-- Fire -->
+                <div class="flex items-center">
+                    <span class="w-12 font-bold text-red-600">火</span>
+                    <div class="flex-1 bg-gray-200 rounded-full h-4 mx-2">
+                        <div class="bg-red-500 h-4 rounded-full chart-bar" style="width: 5%;"></div>
+                    </div>
+                    <span class="w-12 text-right text-sm">5%</span>
+                    <span class="w-16 text-xs text-stone-400 ml-2">官殺(閒)</span>
+                </div>
+                <!-- Earth -->
+                <div class="flex items-center">
+                    <span class="w-12 font-bold text-amber-800">土</span>
+                    <div class="flex-1 bg-gray-200 rounded-full h-4 mx-2">
+                        <div class="bg-amber-800 h-4 rounded-full chart-bar" style="width: 20%;"></div>
+                    </div>
+                    <span class="w-12 text-right text-sm">20%</span>
+                    <span class="w-16 text-xs text-stone-400 ml-2">印星(忌)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Da Yun Analysis (Restored & Enhanced with Real Life) -->
+        <div class="bg-white rounded-lg shadow-xl p-6 mb-8 relative overflow-hidden">
+            <h3 class="text-2xl font-cali mb-8 text-stone-800 text-center"><i class="fas fa-scroll mr-2 text-amber-600"></i>一生大運詳批與真實人生對照</h3>
+            
+            <div class="timeline-line"></div>
+            
+            <div class="space-y-8 md:space-y-12">
+                
+                <!-- Da Yun 1: 1969-1978 -->
+                <div class="relative md:flex items-start justify-between">
+                    <div class="hidden md:block w-5/12 text-right pr-8 mt-4">
+                         <div class="font-bold text-xl text-stone-800">10-19 歲</div>
+                         <div class="text-sm text-stone-500">1969 - 1978</div>
+                    </div>
+                    <div class="timeline-dot bg-red-400 top-5"></div>
+                    <div class="pl-12 md:pl-8 md:w-5/12">
+                        <div class="bg-stone-50 p-4 rounded-lg border-l-4 border-red-400 shadow-sm">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-lg text-stone-800">庚午運</span>
+                                <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">官殺之地</span>
+                            </div>
+                            <p class="text-sm text-stone-600 leading-relaxed mb-3">
+                                <strong>命理：</strong>南方火運起步。午火正官鍛金，家教甚嚴，求學階段壓力較大，但官星得力，學業成績優異。
+                            </p>
+                            <div class="bg-white p-2 rounded border border-stone-200 text-xs text-stone-500">
+                                <strong class="text-stone-700 block mb-1">【真實人生】</strong>
+                                新竹高中學霸，苦讀考取陽明醫學院，後重考錄取台大醫學系。符合官殺運「嚴格自律、考試運強」的特徵。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:hidden absolute left-10 -top-6 text-sm font-bold text-stone-500">10-19 歲 (1969-1978)</div>
+                </div>
+
+                <!-- Da Yun 2: 1979-1988 -->
+                <div class="relative md:flex items-start justify-between flex-row-reverse">
+                    <div class="hidden md:block w-5/12 text-left pl-8 mt-4">
+                         <div class="font-bold text-xl text-stone-800">20-29 歲</div>
+                         <div class="text-sm text-stone-500">1979 - 1988</div>
+                    </div>
+                    <div class="timeline-dot bg-amber-500 top-5"></div>
+                    <div class="pl-12 md:pl-0 md:pr-8 md:w-5/12">
+                        <div class="bg-stone-50 p-4 rounded-lg border-l-4 border-amber-500 shadow-sm">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-lg text-stone-800">己巳運</span>
+                                <span class="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded">七殺長生</span>
+                            </div>
+                            <p class="text-sm text-stone-600 leading-relaxed mb-3">
+                                <strong>命理：</strong>巳申合水（食傷）。雖然工作奔波勞碌，但食傷智慧星開始展露，技術逐漸純熟。
+                            </p>
+                            <div class="bg-white p-2 rounded border border-stone-200 text-xs text-stone-500">
+                                <strong class="text-stone-700 block mb-1">【真實人生】</strong>
+                                進入台大醫院擔任住院醫師。外科訓練極度辛苦（七殺壓力），但累積了深厚的醫療技術底蘊。
+                            </div>
+                        </div>
+                    </div>
+                     <div class="md:hidden absolute left-10 -top-6 text-sm font-bold text-stone-500">20-29 歲 (1979-1988)</div>
+                </div>
+
+                <!-- Da Yun 3: 1989-1998 -->
+                <div class="relative md:flex items-start justify-between">
+                     <div class="hidden md:block w-5/12 text-right pr-8 mt-4">
+                         <div class="font-bold text-xl text-stone-800">30-39 歲</div>
+                         <div class="text-sm text-stone-500">1989 - 1998</div>
+                    </div>
+                    <div class="timeline-dot bg-stone-500 top-5"></div>
+                    <div class="pl-12 md:pl-8 md:w-5/12">
+                        <div class="bg-stone-100 p-4 rounded-lg border-l-4 border-stone-500 shadow-sm opacity-90">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-lg text-stone-700">戊辰運</span>
+                                <span class="text-xs bg-stone-200 text-stone-700 px-2 py-1 rounded"><i class="fas fa-exclamation-triangle mr-1"></i>土重埋金</span>
+                            </div>
+                            <p class="text-sm text-stone-600 leading-relaxed mb-3">
+                                <strong>命理：</strong>最艱辛的十年。戊土偏印奪食，才華雖有但難以發光，感覺懷才不遇，只能默默耕耘。
+                            </p>
+                            <div class="bg-white p-2 rounded border border-stone-200 text-xs text-stone-500">
+                                <strong class="text-stone-700 block mb-1">【真實人生】</strong>
+                                赴美進修（印星代表學習），回國後在台大醫院建立器官移植小組與ECMO技術，工作內容雖重要但屬幕後苦勞，且處於白色巨塔的體制壓力下。
+                            </div>
+                        </div>
+                    </div>
+                     <div class="md:hidden absolute left-10 -top-6 text-sm font-bold text-stone-500">30-39 歲 (1989-1998)</div>
+                </div>
+
+                <!-- Da Yun 4: 1999-2008 -->
+                <div class="relative md:flex items-start justify-between flex-row-reverse">
+                    <div class="hidden md:block w-5/12 text-left pl-8 mt-4">
+                         <div class="font-bold text-xl text-stone-800">40-49 歲</div>
+                         <div class="text-sm text-stone-500">1999 - 2008</div>
+                    </div>
+                    <div class="timeline-dot bg-green-500 top-5"></div>
+                    <div class="pl-12 md:pl-0 md:pr-8 md:w-5/12">
+                        <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500 shadow-md">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-lg text-stone-800">丁卯運</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded"><i class="fas fa-arrow-up mr-1"></i>財官雙美</span>
+                            </div>
+                            <p class="text-sm text-stone-600 leading-relaxed mb-3">
+                                <strong>命理：</strong>丁火正官煉金成器，卯未半合木局。專業地位確立，名聲大噪，權力與專業達到平衡。
+                            </p>
+                            <div class="bg-white p-2 rounded border border-stone-200 text-xs text-stone-500">
+                                <strong class="text-stone-700 block mb-1">【真實人生】</strong>
+                                升任台大醫院創傷醫學部主任，成為ECMO權威。雖有SARS期間的爭議，但專業權威地位已不可撼動。
+                            </div>
+                        </div>
+                    </div>
+                     <div class="md:hidden absolute left-10 -top-6 text-sm font-bold text-stone-500">40-49 歲 (1999-2008)</div>
+                </div>
+
+                <!-- Da Yun 5: 2009-2018 -->
+                <div class="relative md:flex items-start justify-between">
+                     <div class="hidden md:block w-5/12 text-right pr-8 mt-4">
+                         <div class="font-bold text-xl text-stone-800">50-59 歲</div>
+                         <div class="text-sm text-stone-500">2009 - 2018</div>
+                    </div>
+                    <div class="timeline-dot bg-red-600 top-5"></div>
+                    <div class="pl-12 md:pl-8 md:w-5/12">
+                        <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-600 shadow-md">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-lg text-stone-800">丙寅運</span>
+                                <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">權力巔峰</span>
+                            </div>
+                            <p class="text-sm text-stone-600 leading-relaxed mb-3">
+                                <strong>命理：</strong>七殺透干，寅申沖（沖動驛馬與祿神）。人生最大轉折，棄醫從政，殺氣騰騰，大權在握。
+                            </p>
+                            <div class="bg-white p-2 rounded border border-stone-200 text-xs text-stone-500">
+                                <strong class="text-stone-700 block mb-1">【真實人生】</strong>
+                                2011(辛卯)：愛滋器捐案，遭彈劾。七殺壓力逼其轉型。<br>
+                                2014(甲午)：MG149案引爆，木火助勢，高票當選市長。<br>
+                                2018(戊戌)：險勝連任。
+                            </div>
+                        </div>
+                    </div>
+                     <div class="md:hidden absolute left-10 -top-6 text-sm font-bold text-stone-500">50-59 歲 (2009-2018)</div>
+                </div>
+
+                <!-- Da Yun 6: 2019-2028 (Current) -->
+                <div class="relative md:flex items-start justify-between flex-row-reverse">
+                    <div class="hidden md:block w-5/12 text-left pl-8 mt-4">
+                         <div class="font-bold text-xl text-red-600">60-69 歲</div>
+                         <div class="text-sm text-red-500 font-bold">2019 - 2028 (目前)</div>
+                    </div>
+                    <div class="timeline-dot bg-amber-600 ring-4 ring-amber-200 top-5"></div>
+                    <div class="pl-12 md:pl-0 md:pr-8 md:w-5/12">
+                        <div class="bg-amber-50 p-4 rounded-lg border-l-4 border-amber-600 shadow-lg transform scale-105 transition-transform">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-lg text-stone-800">乙丑運</span>
+                                <span class="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded">三刑震盪</span>
+                            </div>
+                            <p class="text-sm text-stone-600 leading-relaxed mb-3">
+                                <strong>命理：</strong>乙庚合，心態想守成或獲利。但地支「丑未戌三刑」成局。印星（土）變質，代表文書、合約、土地出大問題。
+                            </p>
+                            <div class="bg-white p-2 rounded border border-stone-200 text-xs text-stone-500">
+                                <strong class="text-stone-700 block mb-1">【真實人生】</strong>
+                                2019年創立民眾黨。<br>
+                                2024年(甲辰)參選總統失利，隨後因京華城案與政治獻金案遭羈押。<br>
+                                2025年(乙巳)交保，官司纏身。
+                            </div>
+                        </div>
+                    </div>
+                     <div class="md:hidden absolute left-10 -top-6 text-sm font-bold text-red-600">60-69 歲 (目前)</div>
+                </div>
+
+                <!-- Da Yun 7: 2029-2038 -->
+                <div class="relative md:flex items-start justify-between">
+                     <div class="hidden md:block w-5/12 text-right pr-8 mt-4">
+                         <div class="font-bold text-xl text-stone-800">70-79 歲</div>
+                         <div class="text-sm text-stone-500">2029 - 2038</div>
+                    </div>
+                    <div class="timeline-dot bg-blue-500 top-5"></div>
+                    <div class="pl-12 md:pl-8 md:w-5/12">
+                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500 shadow-sm">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-lg text-stone-800">甲子運</span>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">晚年清貴</span>
+                            </div>
+                            <p class="text-sm text-stone-600 leading-relaxed">
+                                <strong>命理：</strong>甲木偏財透出，子水傷官洩金。擺脫土運糾纏，思緒轉清，晚年將以「智者」或「評論家」身份活躍，或回歸醫療/學術領域，生活轉為優渥平順。
+                            </p>
+                        </div>
+                    </div>
+                     <div class="md:hidden absolute left-10 -top-6 text-sm font-bold text-stone-500">70-79 歲 (2029-2038)</div>
+                </div>
+
+                 <!-- Da Yun 8: 2039-2048 -->
+                <div class="relative md:flex items-start justify-between flex-row-reverse">
+                    <div class="hidden md:block w-5/12 text-left pl-8 mt-4">
+                         <div class="font-bold text-xl text-stone-800">80-89 歲</div>
+                         <div class="text-sm text-stone-500">2039 - 2048</div>
+                    </div>
+                    <div class="timeline-dot bg-blue-700 top-5"></div>
+                    <div class="pl-12 md:pl-0 md:pr-8 md:w-5/12">
+                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-700 shadow-sm">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-lg text-stone-800">癸亥運</span>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">歸隱山林</span>
+                            </div>
+                            <p class="text-sm text-stone-600 leading-relaxed">
+                                <strong>命理：</strong>純水之運，徹底洩去強金之戾氣。心如止水，安享天年。
+                            </p>
+                        </div>
+                    </div>
+                     <div class="md:hidden absolute left-10 -top-6 text-sm font-bold text-stone-500">80-89 歲 (2039-2048)</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- NEW CHAPTER: Deep Dive into Blind Spots -->
+        <div class="bg-white rounded-lg shadow-xl p-6 mb-8 border-t-8 border-stone-800">
+            <h3 class="text-2xl font-cali mb-6 text-stone-800 text-center border-b border-stone-200 pb-4">
+                <i class="fas fa-microscope mr-2"></i>深度技法專章：流年大運比對與論命盲點探討
+            </h3>
+            
+            <p class="mb-6 text-stone-600 leading-relaxed">
+                2024年（甲辰）命主遭遇羈押風暴，這在八字命理學界引起了廣泛討論。許多初學者或單一派別論命者，看到天干「甲木」（偏財）透出，便斷言「財運佳」、「有發展」，卻忽略了地支極度兇險的結構性問題。本章將深入剖析此一「論命盲點」。
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- The Trap: Surface Appearance -->
+                <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                    <h4 class="font-bold text-green-800 text-lg mb-3">盲點一：只見天干「財星」</h4>
+                    <p class="text-sm text-stone-700 mb-3">
+                        <strong>表象誤判：</strong><br>
+                        大運「乙丑」（乙木正財）與流年「甲辰」（甲木偏財）。<br>
+                        天干甲乙木齊透，對於身強喜木的庚金日主，乍看之下是用神到位，理應財源滾滾、資源豐厚。
+                    </p>
+                    <p class="text-sm text-stone-700">
+                        <strong>現實對應：</strong><br>
+                        確實涉及了龐大的「金錢」與「資源」（如政治獻金、選舉補助款、京華城容積利益），財星的確出現了，但並非「得財」，而是因財致禍。
+                    </p>
+                </div>
+
+                <!-- The Reality: Deep Structure -->
+                <div class="bg-red-50 p-5 rounded-lg border border-red-200">
+                    <h4 class="font-bold text-red-800 text-lg mb-3">真相解密：地支「四庫亂動」</h4>
+                    <p class="text-sm text-stone-700 mb-3">
+                        <strong>結構性崩壞：</strong><br>
+                        問題出在地支的交互作用。
+                        <ul class="list-disc list-inside mt-1 ml-1 text-xs space-y-1">
+                            <li><strong>原局：</strong>未（月）、戌（時）。</li>
+                            <li><strong>大運：</strong>丑（乙丑運）。</li>
+                            <li><strong>流年：</strong>辰（甲辰年）。</li>
+                        </ul>
+                    </p>
+                    <p class="text-sm text-stone-700">
+                        <strong>致命化學反應：</strong><br>
+                        辰、戌、丑、未四字全見，稱為<strong>「四庫全備」</strong>或<strong>「土方局」</strong>。<br>
+                        1. <strong>土重埋金：</strong>極度厚重的土氣（印星）將庚金完全掩埋。印星代表自由、文書、居住地。土太重則變成「牢獄」、「受困」、「有理說不清」。<br>
+                        2. <strong>三刑逢沖：</strong>大運已成「丑未戌三刑」，流年「辰」再來沖「戌」。這激發了極強的土氣震盪，直接沖垮了時支（事業宮/權力宮）。
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-6 bg-stone-100 p-5 rounded-lg border-l-4 border-stone-500">
+                <h4 class="font-bold text-stone-800 mb-2">結論：為什麼「財年」反成「災年」？</h4>
+                <p class="text-sm text-stone-700 leading-relaxed">
+                    在子平法中，這叫<strong>「貪財壞印」</strong>的變格。天干的財（甲乙木）試圖去剋制地支過旺的印（土），引發了「財印交戰」。<br>
+                    <strong>現實意義：</strong>因為追求金錢或資源（財），而破壞了名聲與法治保護（印），最終導致土崩瓦解（羈押）。這就是為何論命不能只看天干喜用，必須全盤檢視地支刑沖的關鍵案例。
+                </p>
+            </div>
+        </div>
+        
+        <!-- Yearly Analysis (2016-2025) Updated with Real Events -->
+        <div class="bg-stone-200 rounded-lg shadow-inner p-6 mb-8 border border-stone-300">
+            <h3 class="text-2xl font-cali mb-6 text-stone-600"><i class="fas fa-history mr-2 text-stone-500"></i>流年運勢總覽 (2016-2025)</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                
+                <!-- 2016 -->
+                <div class="bg-white p-3 rounded shadow-sm opacity-90">
+                    <div class="text-lg font-bold text-stone-600">2016 <span class="text-xs font-normal">丙申</span></div>
+                    <div class="text-xs bg-stone-200 text-stone-500 px-2 py-1 rounded mt-1 inline-block">市長任期</div>
+                    <p class="text-xs text-stone-500 mt-2 leading-relaxed">
+                        七殺坐祿。施政風格強硬，雖有爭議（大巨蛋案僵局），但權力穩固。
+                    </p>
+                </div>
+
+                 <!-- 2017 -->
+                <div class="bg-white p-3 rounded shadow-sm opacity-90">
+                    <div class="text-lg font-bold text-stone-600">2017 <span class="text-xs font-normal">丁酉</span></div>
+                    <div class="text-xs bg-stone-200 text-stone-500 px-2 py-1 rounded mt-1 inline-block">世大運</div>
+                    <p class="text-xs text-stone-500 mt-2 leading-relaxed">
+                        官星得地。世大運成功舉辦，聲望回升，丁火正官助益名聲。
+                    </p>
+                </div>
+
+                 <!-- 2018 (Warning) -->
+                <div class="bg-red-50 border border-red-200 p-3 rounded shadow-sm">
+                    <div class="text-lg font-bold text-red-700">2018 <span class="text-xs font-normal text-stone-600">戊戌</span></div>
+                    <div class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded mt-1 inline-block">連任慘勝</div>
+                    <p class="text-xs text-stone-600 mt-2 leading-relaxed font-bold">
+                        土重埋金。選情極度膠著，壓力巨大，最終僅以微弱差距險勝。
+                    </p>
+                </div>
+
+                <!-- 2019 -->
+                <div class="bg-white p-3 rounded shadow-sm opacity-90">
+                    <div class="text-lg font-bold text-stone-600">2019 <span class="text-xs font-normal">己亥</span></div>
+                    <div class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded mt-1 inline-block">創立民眾黨</div>
+                    <p class="text-xs text-stone-500 mt-2 leading-relaxed">
+                        食神洩秀。轉換跑道，成立政黨，試圖延續政治生命，為換運年的轉折。
+                    </p>
+                </div>
+
+                <!-- 2020 -->
+                <div class="bg-white p-3 rounded shadow-sm opacity-90">
+                     <div class="text-lg font-bold text-stone-600">2020 <span class="text-xs font-normal">庚子</span></div>
+                    <div class="text-xs bg-stone-200 text-stone-500 px-2 py-1 rounded mt-1 inline-block">立院斬獲</div>
+                    <p class="text-xs text-stone-500 mt-2 leading-relaxed">
+                        金水相涵。民眾黨進軍國會，獲得席次，政治版圖擴張。
+                    </p>
+                </div>
+
+                <!-- 2021 (Critical) -->
+                <div class="bg-stone-50 border-2 border-red-300 p-3 rounded shadow-md relative">
+                    <div class="absolute -top-2 -right-2 text-red-500 bg-white rounded-full p-1"><i class="fas fa-exclamation"></i></div>
+                     <div class="text-lg font-bold text-red-700">2021 <span class="text-xs font-normal text-stone-600">辛丑</span></div>
+                    <div class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded mt-1 inline-block">三刑隱憂</div>
+                    <p class="text-xs text-stone-600 mt-2 leading-relaxed font-bold">
+                        大運(乙丑)與流年(辛丑)引動「丑未戌」三刑。雖無大災，但內部隱患與爭議開始積累。
+                    </p>
+                </div>
+
+                <!-- 2022 -->
+                <div class="bg-white p-3 rounded shadow-sm opacity-90">
+                     <div class="text-lg font-bold text-stone-600">2022 <span class="text-xs font-normal">壬寅</span></div>
+                    <div class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded mt-1 inline-block">卸任市長</div>
+                    <p class="text-xs text-stone-500 mt-2 leading-relaxed">
+                        驛馬逢沖。卸下市長職務，全台奔波輔選，為總統大選鋪路。
+                    </p>
+                </div>
+
+                <!-- 2023 -->
+                <div class="bg-white p-3 rounded shadow-sm opacity-90">
+                     <div class="text-lg font-bold text-stone-600">2023 <span class="text-xs font-normal">癸卯</span></div>
+                    <div class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded mt-1 inline-block">藍白合破局</div>
+                    <p class="text-xs text-stone-500 mt-2 leading-relaxed">
+                        傷官生財。聲勢雖高，但傷官見官（挑戰體制），合作（藍白合）最終破局。
+                    </p>
+                </div>
+
+                 <!-- 2024 -->
+                <div class="bg-stone-50 border-2 border-red-500 p-3 rounded shadow-md relative">
+                     <div class="absolute -top-2 -right-2 text-red-500 bg-white rounded-full p-1"><i class="fas fa-bolt"></i></div>
+                     <div class="text-lg font-bold text-red-800">2024 <span class="text-xs font-normal">甲辰</span></div>
+                    <div class="text-xs bg-red-600 text-white px-2 py-1 rounded mt-1 inline-block">羈押禁見</div>
+                    <p class="text-xs text-stone-600 mt-2 leading-relaxed font-bold">
+                        辰戌相沖，引爆三刑。8月搜查，9月羈押。土地（京華城）與金錢（政治獻金）成為最大災難。
+                    </p>
+                </div>
+
+                 <!-- 2025 -->
+                <div class="bg-white p-3 rounded shadow-sm opacity-90">
+                     <div class="text-lg font-bold text-stone-600">2025 <span class="text-xs font-normal">乙巳</span></div>
+                    <div class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded mt-1 inline-block">交保候審</div>
+                    <p class="text-xs text-stone-500 mt-2 leading-relaxed">
+                        乙庚合。經歷長期羈押後，於9月獲得交保。雖重獲自由，但官司纏身，需面對漫長司法戰。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Political Special Section -->
+        <div class="bg-stone-900 text-stone-200 rounded-lg shadow-xl p-6 mb-8 border-2 border-amber-600">
+            <div class="flex items-center mb-6">
+                 <i class="fas fa-gavel fa-2x text-amber-500 mr-3"></i>
+                 <h3 class="text-2xl font-cali text-amber-500">【特別專題】仕途與官非風險評估</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Political Style -->
+                <div>
+                    <h4 class="text-lg font-bold text-stone-100 mb-3 border-b border-stone-700 pb-2">仕途風格：威權實幹</h4>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-4">
+                        時柱透出<strong>丙火七殺</strong>，且身強能任殺。若為政治人物，風格傾向於<strong>強硬、果決、重視紀律</strong>。非長袖善舞的協調型，而是開疆闢土或整頓紀律的實權派。
+                    </p>
+                    <div class="bg-stone-800 p-3 rounded">
+                        <div class="text-xs text-stone-500 mb-1">巔峰期 (1999-2018)</div>
+                        <p class="text-sm text-stone-300">走木火運(丁卯/丙寅)，財生殺旺，是權力最穩固、升遷最快的黃金二十年。</p>
+                    </div>
+                </div>
+
+                <!-- Legal Risks -->
+                <div>
+                    <h4 class="text-lg font-bold text-red-400 mb-3 border-b border-red-900/50 pb-2">官非風險：土重埋金</h4>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-4">
+                        命局最大的隱患在於<strong>印星(土)過重</strong>。印星代表文書、合約、土地、過往紀錄。
+                        <br>
+                        當前大運<strong>(乙丑)</strong>與命局形成<strong>「丑未戌三刑」</strong>。這是典型的「恩中招怨」與「文書官非」之象。
+                    </p>
+                    <div class="bg-red-900/20 border border-red-900/50 p-3 rounded">
+                        <div class="text-xs text-red-400 mb-1 font-bold">高風險引爆點</div>
+                        <ul class="text-sm text-stone-300 list-disc list-inside">
+                            <li><strong>土地房產開發</strong>弊端</li>
+                            <li><strong>文書合約</strong>偽造或瑕疵</li>
+                            <li><strong>陳年舊案</strong>被翻出檢視</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Analysis: Character & Family (Deep Dive) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            
+            <!-- Character: Deep Dive -->
+            <div class="bg-white rounded-lg shadow-lg p-6 border-l-4 border-blue-500">
+                <h4 class="text-xl font-bold mb-3 text-stone-800"><i class="fas fa-brain mr-2 text-blue-500"></i>品性深度剖析</h4>
+                <ul class="list-disc list-inside text-stone-600 space-y-3 leading-relaxed text-sm">
+                    <li><strong>外剛內執 (庚金特質)：</strong>日主庚金坐祿，個性<strong>剛毅、直言不諱</strong>，有著「亞斯伯格」般的執著與SOP精神。外表看似理性冷酷（七殺透干），實則內心極度固執。</li>
+                    <li><strong>自視甚高，難以妥協：</strong>身強且印星重，代表<strong>自信心極強</strong>，甚至容易流於自負。土重埋金，容易聽不進他人的逆耳忠言，認為自己的判斷才是絕對正確。</li>
+                    <li><strong>道德潔癖與現實落差：</strong>印星代表名譽與道德感。命主內心或許有極高的道德標準，但「財星破印」的流年（如涉及金錢爭議）會讓這種人設瞬間崩塌，造成巨大的社會觀感落差。</li>
+                </ul>
+            </div>
+
+            <!-- Family: Parents (Deep Dive) -->
+            <div class="bg-white rounded-lg shadow-lg p-6 border-l-4 border-pink-500">
+                <h4 class="text-xl font-bold mb-3 text-stone-800"><i class="fas fa-users mr-2 text-pink-500"></i>父母影響專論</h4>
+                <ul class="list-disc list-inside text-stone-600 space-y-3 leading-relaxed text-sm">
+                    <li><strong>強勢母愛 (印星過旺)：</strong>八字中土氣極重，母親對命主的影響力無遠弗屆。母親（如現實中的柯媽媽）不僅是精神支柱，更在人生關鍵決策上扮演重要角色。這種愛雖深，但「土多金埋」，也可能讓命主在公眾形象上被視為「媽寶」或缺乏獨立決斷力。</li>
+                    <li><strong>父緣隱沒：</strong>相較於母親的高調與影響力，父親的角色在命局中較為隱晦（財星入庫）。這也呼應了現實中，公眾對其母親的熟悉度遠高於父親。</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- NEW SECTION: Critical Review of Reality vs. Fate (Updated) -->
+        <div class="bg-white rounded-lg shadow-xl p-6 mb-8 border-l-4 border-red-600">
+            <h3 class="text-2xl font-cali mb-6 text-red-800"><i class="fas fa-search-dollar mr-2"></i>【歷年重大爭議事件與命理應驗】</h3>
+            <p class="mb-4 text-stone-600 text-sm">
+                從「愛滋器捐」到「MG149」，再到近期的「京華城案」，我們可以看到命主在不同流年結構下，面對危機的轉化能力截然不同。
+            </p>
+
+            <div class="space-y-4">
+                <div class="bg-stone-50 p-4 rounded border border-stone-200">
+                    <h4 class="font-bold text-stone-800 mb-2">1. 2011 (辛卯)：愛滋器捐案 - 危機即轉機</h4>
+                    <p class="text-sm text-stone-600">
+                        <strong>事件：</strong>台大醫院發生誤植愛滋器官事件，命主作為負責人遭懲處，降級改敘。
+                        <br><strong>命理：</strong>大運「丙寅」（七殺），流年「辛卯」（劫財/財）。丙辛合（殺制劫）。七殺代表強大壓力與行政懲處，但同時也合住了劫財（同僚/下屬的失誤）。這股巨大的「殺氣」迫使他離開舒適圈（白色巨塔），埋下從政伏筆。
+                    </p>
+                </div>
+
+                <div class="bg-stone-50 p-4 rounded border border-stone-200">
+                    <h4 class="font-bold text-stone-800 mb-2">2. 2014 (甲午)：MG149案 - 火煉真金</h4>
+                    <p class="text-sm text-stone-600">
+                        <strong>事件：</strong>選戰期間遭指控MG149帳戶洗錢。
+                        <br><strong>命理：</strong>大運「丙寅」，流年「甲午」。寅午半合火局，甲木生火。財滋弱殺，火勢極旺。對於庚金日主，這是「千錘百鍊」的過程。爭議（火）不僅沒有燒毀他，反而除去了雜質，讓他聲勢大噪，高票當選。
+                    </p>
+                </div>
+
+                <div class="bg-red-50 p-4 rounded border border-red-200">
+                    <h4 class="font-bold text-red-800 mb-2">3. 2024 (甲辰)：京華城/獻金案 - 土重埋金</h4>
+                    <p class="text-sm text-stone-600">
+                        <strong>事件：</strong>因容積率與政治獻金案遭羈押。
+                        <br><strong>命理差異：</strong>同樣透出「甲木」（財），為何結局不同？關鍵在於大運已轉「乙丑」（濕土/印）。流年「辰」與命局「戌」相沖，引發「丑未戌」三刑。土氣（印）過重崩塌，導致「埋金」（失去自由）。2014是「火」煉金（成器），2024是「土」埋金（受困）。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Noble People & Opportunities (Expanded 2014-2025) -->
+        <div class="bg-white rounded-lg shadow-xl p-6 mb-8 border-l-4 border-purple-500">
+            <h3 class="text-2xl font-cali mb-6 text-stone-800"><i class="fas fa-hand-holding-heart mr-2 text-purple-600"></i>貴人運勢與機遇 (2014-2025)</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Identify Nobles -->
+                <div>
+                    <h4 class="font-bold text-lg text-stone-800 mb-3 border-b border-stone-200 pb-2">命定貴人解析</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="bg-purple-100 text-purple-700 font-bold px-2 py-1 rounded text-xs mr-2 mt-1 whitespace-nowrap">屬虎 (寅)、屬馬 (午)</span>
+                            <span class="text-sm text-stone-600">天乙貴人。2014(馬)年得民進黨禮讓當選，是典型貴人運旺。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-purple-100 text-purple-700 font-bold px-2 py-1 rounded text-xs mr-2 mt-1 whitespace-nowrap">屬鼠 (子)、屬猴 (申)</span>
+                            <span class="text-sm text-stone-600">同輩或晚輩助力。2020(鼠)年民眾黨進軍國會，年輕選民(晚輩)是關鍵貴人。</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Timing of Nobles -->
+                <div>
+                     <h4 class="font-bold text-lg text-stone-800 mb-3 border-b border-stone-200 pb-2">關鍵年份回顧</h4>
+                     <div class="space-y-2 h-64 overflow-y-auto pr-2 custom-scrollbar">
+                        <div class="flex items-center">
+                            <div class="w-16 font-bold text-stone-700">2014</div>
+                            <div class="flex-1 bg-purple-50 px-3 py-1 rounded text-sm text-stone-600 border border-purple-100">
+                                <span class="font-bold text-purple-700">甲午 (馬)</span>：<span class="text-xs text-stone-500">天乙貴人</span>。最大貴人運爆發，政治生涯起點。
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-16 font-bold text-stone-500">2018</div>
+                            <div class="flex-1 bg-stone-50 px-3 py-1 rounded text-sm text-stone-600 border border-stone-100">
+                                <span class="font-bold text-stone-700">戊戌 (狗)</span>：貴人運弱。靠自身意志力（比劫）慘勝。
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-16 font-bold text-stone-700">2022</div>
+                            <div class="flex-1 bg-purple-50 px-3 py-1 rounded text-sm text-stone-600 border border-purple-100">
+                                <span class="font-bold text-purple-700">壬寅 (虎)</span>：<span class="text-xs text-stone-500">天乙貴人</span>。卸任後仍有高人氣與支持者(小草)不離不棄。
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-16 font-bold text-red-700">2024</div>
+                            <div class="flex-1 bg-red-50 px-3 py-1 rounded text-sm text-stone-600 border border-red-100">
+                                <span class="font-bold text-red-700">甲辰 (龍)</span>：貴人退位，犯小人。昔日幕僚轉為控方證人，貴人變小人。
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-16 font-bold text-stone-700">2025</div>
+                            <div class="flex-1 bg-blue-50 px-3 py-1 rounded text-sm text-stone-600 border border-blue-100">
+                                <span class="font-bold text-blue-600">乙巳 (蛇)</span>：律師團成為關鍵貴人，協助交保。
+                            </div>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NEW EDUCATIONAL SECTION -->
+        <div class="bg-stone-100 rounded-lg shadow-inner p-6 mb-8 border-2 border-stone-400 border-dashed">
+            <h3 class="text-2xl font-cali mb-6 text-stone-700 text-center"><i class="fas fa-chalkboard-teacher mr-2 text-stone-600"></i>【命理教學實錄】盲批與實證的差距檢討：給八字學習者的寶貴一課</h3>
+            
+            <div class="space-y-6">
+                <!-- Lesson 1: Career -->
+                <div>
+                    <h4 class="font-bold text-stone-800 mb-2 border-l-4 border-stone-500 pl-2">一、職業判斷的層次：從「五行屬性」到「社會角色」</h4>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        在盲批階段，我們推斷命主適合「金屬、機械、武職」。這是基於日主「庚金」的本質。
+                        <br><strong>實證對照：</strong>命主為「外科醫生」（拿刀的技術人員），後轉為「政治領袖」（七殺掌權）。
+                        <br><span class="text-red-700 font-bold">教學重點：</span>五行屬性是「體」，職業是「用」。外科醫生的手術刀與政治上的殺伐決斷，本質上都是「肅殺之金」。學習八字不應拘泥於具體職稱，而應看其「行為模式」。
+                    </p>
+                </div>
+
+                <!-- Lesson 2: The Trap of Wealth Star -->
+                <div>
+                    <h4 class="font-bold text-stone-800 mb-2 border-l-4 border-red-500 pl-2">二、吉凶判斷的誤區：天干「財星」是福是禍？</h4>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        在2024（甲辰）年，天干透出「甲木偏財」，初學者極易斷為「財運大好」。
+                        <br><strong>實證對照：</strong>命主因涉及巨額資金弊案遭羈押。
+                        <br><span class="text-red-700 font-bold">教學重點：</span>這是最經典的教材。當歲運地支引發劇烈刑沖（辰戌沖+丑未戌三刑）導致根基動搖時，天干透出的財星往往不是「得財」，而是「致禍之源」。切記：<strong class="underline">地支決定吉凶的實質，天干決定發生的事象（因財惹禍）。</strong>
+                    </p>
+                </div>
+
+                <!-- Lesson 3: Personality & Family -->
+                <div>
+                    <h4 class="font-bold text-stone-800 mb-2 border-l-4 border-amber-500 pl-2">三、性格與六親的精準度：八字的靈魂</h4>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        盲批時提到的「土重埋金」（固執、聽不進勸）與「母慈滅子」（母親影響力過大），在真實案例中得到了驚人的印證。
+                        <br><span class="text-red-700 font-bold">教學重點：</span>相比於預測流年事件的困難度，八字在描繪一個人的「內在性格」與「原生家庭結構」上，往往具有極高的準確性。這證明了「性格決定命運」在命理學上的核心地位。
+                    </p>
+                </div>
+
+                <!-- Lesson 4: Greed for Wealth Ruins Seal (Deep Logic Update) -->
+                <div>
+                    <h4 class="font-bold text-stone-800 mb-2 border-l-4 border-purple-500 pl-2">四、經典格局解析：「貪財壞印」的底層邏輯</h4>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        <strong>表象誤區：</strong>許多人以為「貪財壞印」單純指貪錢。若只論貪污，格局便看小了。
+                        <br><strong>底層邏輯（動靜之戰）：</strong>
+                        <ul class="list-disc list-inside mt-2 ml-1 text-stone-600 bg-white p-3 rounded border border-stone-200">
+                            <li><strong>財星（動）：</strong>不僅是錢，更是<strong>「向外追逐的慾望」</strong>與驅動力。它讓人坐不住，想要更多、更快。</li>
+                            <li><strong>印星（靜）：</strong>不僅是名譽，更是<strong>「內在的SOP、法規與邊界」</strong>。它負責穩住陣腳，提供保護。</li>
+                            <li><strong>實務應驗：</strong>命主案件的本質，是強大的「財」（想快速達成容積獎勵、想擴張政黨勢力的慾望），衝破了「印」（公務員法規、SOP的保護傘）。</li>
+                            <li><strong>結論：</strong>此格局之凶，在於命主<strong>「對自身能力的嚴重錯誤評估」</strong>，誤以為可以駕馭規則，實則越軌做事。失去了「印」這根定海神針，最終從雲端跌落，成為失去自由的糊塗人。</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-center text-stone-500 text-sm pb-8 no-print">
+            <p>Copyright © 論子平. All rights reserved.</p>
+            <p class="mt-2 text-xs">命理分析僅供參考，命運掌握在自己手中。</p>
+            <button onclick="window.print()" class="mt-4 bg-stone-700 hover:bg-stone-600 text-white font-bold py-2 px-6 rounded-full transition duration-300">
+                <i class="fas fa-print mr-2"></i>列印命書
+            </button>
+        </footer>
+
+        <!-- Floating Action Button -->
+        <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end no-print">
+            <!-- The Panel (Initially Hidden) -->
+            <div id="quick-chart" class="bg-white p-4 rounded-lg shadow-2xl border-2 border-amber-600 mb-4 w-80 transform transition-all duration-300 origin-bottom-right scale-0 hidden">
+                <div class="flex justify-between items-center border-b border-amber-200 pb-2 mb-2">
+                    <h4 class="text-amber-800 font-bold font-cali text-lg">命盤速查</h4>
+                    <div class="flex items-center text-xs text-stone-500">
+                        <span>西曆</span>
+                        <input type="number" id="check-year" value="2025" onchange="updateChart()" class="w-16 border border-stone-300 rounded ml-1 px-1 text-center focus:outline-none focus:border-amber-500 font-bold text-stone-700">
+                        <span class="ml-1">年</span>
+                    </div>
+                </div>
+                
+                <!-- 6 Pillars Grid: Hour, Day, Month, Year, DaYun, LiuNian -->
+                <div class="grid grid-cols-6 gap-1 text-center text-sm mb-1 bg-stone-50 p-2 rounded">
+                    <!-- Headers -->
+                    <div class="font-bold text-gray-500 text-xs">時</div>
+                    <div class="font-bold text-gray-500 text-xs">日</div>
+                    <div class="font-bold text-gray-500 text-xs">月</div>
+                    <div class="font-bold text-gray-500 text-xs">年</div>
+                    <div class="font-bold text-red-700 text-xs border-b-2 border-red-200 pb-1">運</div>
+                    <div class="font-bold text-blue-700 text-xs border-b-2 border-blue-200 pb-1">歲</div>
+                    
+                    <!-- Stems -->
+                    <div class="text-red-600 font-bold text-lg mt-1">丙</div>
+                    <div class="text-amber-600 font-bold text-lg mt-1">庚</div>
+                    <div class="text-amber-600 font-bold text-lg mt-1">辛</div>
+                    <div class="text-amber-700 font-bold text-lg mt-1">己</div>
+                    <div class="text-green-600 font-bold text-lg mt-1" id="yun-stem">乙</div>
+                    <div class="text-green-600 font-bold text-lg mt-1" id="year-stem">乙</div>
+                    
+                    <!-- Branches -->
+                    <div class="text-amber-700 font-bold text-lg">戌</div>
+                    <div class="text-amber-600 font-bold text-lg">申</div>
+                    <div class="text-amber-700 font-bold text-lg">未</div>
+                    <div class="text-blue-700 font-bold text-lg">亥</div>
+                    <div class="text-amber-800 font-bold text-lg" id="yun-branch">丑</div>
+                    <div class="text-red-600 font-bold text-lg" id="year-branch">巳</div>
+                </div>
+                
+                <div class="text-center text-[10px] text-stone-400 mt-2">
+                    <i class="fas fa-info-circle mr-1"></i>輸入年份可自動推算運程
+                </div>
+            </div>
+
+            <!-- The Toggle Button -->
+            <button onclick="toggleQuickChart()" class="bg-amber-600 hover:bg-amber-700 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition-transform hover:scale-110 focus:outline-none">
+                <i class="fas fa-calendar-alt text-2xl"></i>
+            </button>
+        </div>
+
+        <script>
+            function toggleQuickChart() {
+                const chart = document.getElementById('quick-chart');
+                if (chart.classList.contains('hidden')) {
+                    chart.classList.remove('hidden');
+                    setTimeout(() => {
+                        chart.classList.remove('scale-0');
+                        chart.classList.add('scale-100');
+                    }, 10);
+                } else {
+                    chart.classList.remove('scale-100');
+                    chart.classList.add('scale-0');
+                    setTimeout(() => {
+                        chart.classList.add('hidden');
+                    }, 300);
+                }
+            }
+
+            // Calculation Logic for Da Yun & Liu Nian
+            const tiangan = ["癸", "甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬"];
+            const dizhi = ["亥", "子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌"];
+
+            // Color Mappings (Tailwind Classes)
+            const stemColors = {
+                "甲": "text-green-600", "乙": "text-green-600",
+                "丙": "text-red-600", "丁": "text-red-600",
+                "戊": "text-amber-800", "己": "text-amber-800",
+                "庚": "text-amber-600", "辛": "text-amber-600",
+                "壬": "text-blue-600", "癸": "text-blue-600"
+            };
+            const branchColors = {
+                "寅": "text-green-600", "卯": "text-green-600",
+                "巳": "text-red-600", "午": "text-red-600",
+                "辰": "text-amber-800", "戌": "text-amber-800", "丑": "text-amber-800", "未": "text-amber-800",
+                "申": "text-amber-600", "酉": "text-amber-600",
+                "亥": "text-blue-600", "子": "text-blue-600"
+            };
+
+            function updateChart() {
+                const yearInput = document.getElementById('check-year');
+                let year = parseInt(yearInput.value);
+                if (isNaN(year)) year = 2025;
+
+                // Liu Nian (Year Stem/Branch)
+                // (Year - 3) % 10 gives index in ["癸", "甲"...] where 1=甲
+                let sIdx = (year - 3) % 10;
+                let bIdx = (year - 3) % 12;
+                if (sIdx < 0) sIdx += 10;
+                if (bIdx < 0) bIdx += 12;
+
+                const ys = tiangan[sIdx];
+                const yb = dizhi[bIdx];
+
+                const yearStemEl = document.getElementById('year-stem');
+                const yearBranchEl = document.getElementById('year-branch');
+
+                yearStemEl.innerText = ys;
+                yearStemEl.className = `text-lg mt-1 font-bold ${stemColors[ys]}`;
+                
+                yearBranchEl.innerText = yb;
+                yearBranchEl.className = `text-lg font-bold ${branchColors[yb]}`;
+
+                // Da Yun (Hardcoded for Ko Wen-je, born 1959, 10-year cycles starting ~x9)
+                let yunStem = "—";
+                let yunBranch = "—";
+
+                if (year >= 2039) { yunStem = "癸"; yunBranch = "亥"; }
+                else if (year >= 2029) { yunStem = "甲"; yunBranch = "子"; }
+                else if (year >= 2019) { yunStem = "乙"; yunBranch = "丑"; }
+                else if (year >= 2009) { yunStem = "丙"; yunBranch = "寅"; }
+                else if (year >= 1999) { yunStem = "丁"; yunBranch = "卯"; }
+                else if (year >= 1989) { yunStem = "戊"; yunBranch = "辰"; }
+                else if (year >= 1979) { yunStem = "己"; yunBranch = "巳"; }
+                else if (year >= 1969) { yunStem = "庚"; yunBranch = "午"; }
+                else if (year >= 1959) { yunStem = "辛"; yunBranch = "未"; } // Before 1st Da Yun
+
+                const yunStemEl = document.getElementById('yun-stem');
+                const yunBranchEl = document.getElementById('yun-branch');
+
+                yunStemEl.innerText = yunStem;
+                yunBranchEl.innerText = yunBranch;
+
+                if (stemColors[yunStem]) {
+                    yunStemEl.className = `text-lg mt-1 font-bold ${stemColors[yunStem]}`;
+                    yunBranchEl.className = `text-lg font-bold ${branchColors[yunBranch]}`;
+                } else {
+                    yunStemEl.className = `text-lg mt-1 font-bold text-gray-400`;
+                    yunBranchEl.className = `text-lg font-bold text-gray-400`;
+                }
+            }
+            
+            // Init chart with default year color
+            window.onload = function() {
+                updateChart();
+            };
+        </script>
+
+    </main>
+
+</body>
+</html>
