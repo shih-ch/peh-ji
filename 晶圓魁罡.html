@@ -93,7 +93,7 @@
 
         .compass-grid {
             display: flex;
-            flex-direction: row; /* 由左至右排列：時->日->月->年->大運->流年 */
+            flex-direction: row; /* 由左至右排列 */
             gap: 8px;
             justify-content: center;
             align-items: flex-start;
@@ -111,7 +111,7 @@
         }
         
         .compass-pillar.dynamic {
-            background-color: #fffbeb; /* 動態柱底色稍微不同 */
+            background-color: #fffbeb; 
             border-color: #fcd34d;
         }
 
@@ -119,7 +119,7 @@
             font-size: 10px;
             color: #78716c;
             margin-bottom: 4px;
-            writing-mode: vertical-lr; /* 直書標題 */
+            writing-mode: vertical-lr; 
             letter-spacing: 2px;
         }
 
@@ -138,7 +138,7 @@
 
         @media (max-width: 640px) {
             #float-compass {
-                bottom: 90px; /* 手機版避開底部按鈕區域 */
+                bottom: 90px;
                 right: 50%;
                 transform: translateX(50%);
             }
@@ -238,7 +238,7 @@
             </div>
         </header>
 
-        <!-- The Four Pillars Chart (Static Original) -->
+        <!-- The Four Pillars Chart (Static) -->
         <section class="mb-16">
             <div class="flex items-center mb-8">
                 <span class="text-4xl mr-4 bazi-fire opacity-50 font-serif">01</span>
@@ -318,7 +318,7 @@
             </div>
         </section>
 
-        <!-- Deep Analysis: Wuxing & Patterns -->
+        <!-- Deep Analysis: Wuxing & Patterns (Restored) -->
         <section class="mb-16">
              <div class="flex items-center mb-8">
                 <span class="text-4xl mr-4 bazi-fire opacity-50 font-serif">02</span>
@@ -425,7 +425,7 @@
             </div>
         </section>
 
-        <!-- Da Yun: Detailed Timeline -->
+        <!-- Da Yun: Detailed Timeline (Restored) -->
         <section class="mb-16">
             <div class="flex items-center mb-8">
                 <span class="text-4xl mr-4 bazi-fire opacity-50 font-serif">03</span>
@@ -492,7 +492,7 @@
             </div>
         </section>
 
-        <!-- Actionable Advice & Shen Sha -->
+        <!-- Actionable Advice & Shen Sha (Restored) -->
         <section class="mb-12">
             <div class="flex items-center mb-8">
                 <span class="text-4xl mr-4 bazi-fire opacity-50 font-serif">04</span>
@@ -556,7 +556,7 @@
             </div>
         </section>
 
-        <!-- Celebrity Case Study (Retained) -->
+        <!-- Celebrity Case Study (Restored) -->
         <section class="mb-12 bg-slate-900 text-slate-100 p-8 md:p-12 rounded-lg shadow-2xl relative overflow-hidden">
              <!-- Gold Decorative Line -->
              <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-yellow-700 via-yellow-400 to-yellow-700"></div>
@@ -635,7 +635,7 @@
             </div>
         </section>
 
-        <!-- New Section: Late Life Analysis (96+) -->
+        <!-- New Section: Late Life Analysis (96+) (Restored) -->
         <section class="mb-16">
             <div class="flex items-center mb-8">
                 <span class="text-4xl mr-4 bazi-fire opacity-50 font-serif">06</span>
@@ -759,6 +759,154 @@
             </div>
         </section>
 
+        <!-- New Section: Deep Consultation of Various Schools -->
+        <section class="mb-16">
+            <div class="flex items-center mb-8">
+                <span class="text-4xl mr-4 bazi-fire opacity-50 font-serif">07</span>
+                <h2 class="text-3xl font-bold border-b-4 border-red-900 pb-1 flex-grow chinese-font">【晶圓魁罡】各派論命深度會診</h2>
+            </div>
+
+            <!-- Intro -->
+            <div class="bg-stone-100 p-6 border-l-4 border-stone-500 mb-8 rounded italic text-stone-700">
+                <p>本章節彙整四大命理流派（傳統子平、窮通寶鑑、盲派、新派）對此造的深度解析，展現「橫看成嶺側成峰」的命理全息視角。</p>
+            </div>
+
+            <!-- 1. 港台傳統子平派 -->
+            <div class="mb-10 bg-white p-8 rounded-lg shadow border-t-4 border-red-800">
+                <h3 class="text-2xl font-bold text-red-900 mb-4 chinese-font"><i class="fas fa-scroll mr-2"></i>一、港台傳統子平派（格局法）</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="col-span-1">
+                        <span class="block text-sm text-stone-500 mb-1">代表觀點</span>
+                        <p class="font-bold text-stone-800">徐樂吾、韋千里一系</p>
+                    </div>
+                    <div class="col-span-2">
+                        <span class="block text-sm text-stone-500 mb-1">核心論點</span>
+                        <p class="font-bold text-red-800 text-lg">「建祿用殺」與「去濁留清」</p>
+                    </div>
+                </div>
+                <hr class="my-4 border-stone-200">
+                <div class="space-y-4 text-stone-700">
+                    <div>
+                        <strong class="text-stone-900">1. 定格局：</strong>
+                        <p class="text-sm">庚生申月（建祿）。古書云：「建祿生提月，財官喜透天」。身強足以任財官。</p>
+                    </div>
+                    <div>
+                        <strong class="text-stone-900">2. 辨清濁（關鍵）：</strong>
+                        <ul class="list-disc pl-5 text-sm space-y-1 mt-1">
+                            <li><span class="font-bold text-stone-800">病：</span>天干雙透丙火（七殺），官殺混雜，主多頭馬車或是非。</li>
+                            <li><span class="font-bold text-stone-800">藥：</span>妙在年干「辛金」合去月干「丙火」（丙辛合）。</li>
+                            <li><span class="font-bold text-red-800">論斷：</span>此乃「貪合忘殺」或「去留舒配」。合去一殺，獨留時上七殺，格局由濁轉清，謂之<strong>「獨殺顯貴」</strong>。</li>
+                            <li><span class="font-bold text-stone-800">映射：</span>善於化敵為友（合辛），消除干擾，專注於建立自身權威（獨殺）。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. 窮通寶鑑調候派 -->
+            <div class="mb-10 bg-white p-8 rounded-lg shadow border-t-4 border-blue-700">
+                <h3 class="text-2xl font-bold text-blue-900 mb-4 chinese-font"><i class="fas fa-cloud-sun mr-2"></i>二、《窮通寶鑑》調候派（氣數法）</h3>
+                <div class="space-y-4 text-stone-700">
+                    <div>
+                        <span class="block text-sm text-stone-500 mb-1">核心論點</span>
+                        <p class="font-bold text-blue-800 text-lg">「秋金銳利，專用丁火」</p>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded text-sm">
+                        <p class="mb-2"><strong>氣數法則：</strong>「七月庚金，剛銳極矣，專用丁火鍛鍊，次取甲木引丁。」</p>
+                        <p><strong>此造特點：</strong>雖透丙（太陽火）非丁（爐火），但地支戌、未中皆藏丁火，謂之<strong>「暗藏洪爐」</strong>。這塊金屬（晶圓）在充滿火氣的高溫環境中被反覆鍛造，預示行業與<strong>「金屬、高溫、鍛造、精密工藝」</strong>有關。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. 民間盲派命理 -->
+            <div class="mb-10 bg-white p-8 rounded-lg shadow border-t-4 border-stone-600">
+                <h3 class="text-2xl font-bold text-stone-800 mb-4 chinese-font"><i class="fas fa-eye-slash mr-2"></i>三、民間盲派命理（象法與賓主）</h3>
+                <div class="space-y-4 text-stone-700">
+                    <div>
+                        <span class="block text-sm text-stone-500 mb-1">核心論點</span>
+                        <p class="font-bold text-stone-800 text-lg">「制用做功」與「魁罡之象」</p>
+                    </div>
+                    <ul class="list-disc pl-5 text-sm space-y-2">
+                        <li><strong>賓主關係：</strong>時支「子」水（傷官/智慧）合絆月令「申」金（祿/資源）。意即用智慧控制社會資源。</li>
+                        <li><strong>象法解讀：</strong>丙辛合＝將別人的名聲/權力（丙）拿來管理眾人（辛）。金火交戰＝現代高科技製造業（金屬+光電）之象。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 4. 中國新派命理 -->
+            <div class="mb-10 bg-white p-8 rounded-lg shadow border-t-4 border-green-700">
+                <h3 class="text-2xl font-bold text-green-900 mb-4 chinese-font"><i class="fas fa-balance-scale-right mr-2"></i>四、中國新派命理（強弱量化派）</h3>
+                <div class="space-y-4 text-stone-700">
+                    <div>
+                        <span class="block text-sm text-stone-500 mb-1">核心論點</span>
+                        <p class="font-bold text-green-800 text-lg">「身旺用財官」的極致演繹</p>
+                    </div>
+                    <div class="text-sm">
+                        <p class="mb-2"><strong>旺衰判定：</strong>庚生申月得令，坐戌生身，年干辛幫身。結論：<strong>身極旺</strong>。</p>
+                        <p class="mb-2"><strong>用神：</strong>首選<strong>丙火</strong>（制身），次選<strong>木</strong>（耗身生殺）。</p>
+                        <p><strong>論斷：</strong>身旺有殺為貴格。中年走東方木運（財），財滋殺旺，用神到位，故能創立霸業。晚年走水運（食傷），水剋火（傷官見官），雖有影響力但多波折。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2026 Critical Analysis -->
+            <div class="bg-red-900 text-red-50 p-8 rounded-xl shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-10 text-9xl text-white"><i class="fas fa-skull-crossbones"></i></div>
+                <h3 class="text-2xl font-bold mb-6 border-b border-red-700 pb-2 relative z-10">五、2026年（丙午）凶險判斷：各派共識之「壽關」</h3>
+                <div class="grid md:grid-cols-2 gap-8 relative z-10 text-sm">
+                    <div>
+                        <h4 class="font-bold text-yellow-400 mb-2">子平法：七殺攻身</h4>
+                        <p class="mb-4 text-red-100">原局庚金雖旺，但逢大運、流年、原局四重七殺疊加，金被「銷鎔」。且子午沖，調候救神（子水）被破，直攻日主。</p>
+                        
+                        <h4 class="font-bold text-yellow-400 mb-2">窮通法：火旺金鎔</h4>
+                        <p class="text-red-100">秋金喜火煉，但忌「鍛鍊太過」。96歲老金宜靜養，丙午烈火如將老化金屬投入洪爐，結構崩塌。</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-yellow-400 mb-2">盲派法：祿神受制</h4>
+                        <p class="mb-4 text-red-100">口訣「祿神逢沖破，壽元恐難過」。月令申金（祿/身體）被火剋，又見戌土火庫打開（身衰入庫），有收魂之象。</p>
+                        
+                        <h4 class="font-bold text-yellow-400 mb-2">新派法：用神轉忌</h4>
+                        <p class="text-red-100">物極必反。丙火本為用神，但在2026年能量爆表，打破平衡。火多土焦金鎔，權威熱情反成身體高血壓、發炎之負擔。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Table -->
+            <div class="mt-8 overflow-x-auto">
+                <table class="min-w-full bg-white border border-stone-200 text-sm text-stone-700">
+                    <thead>
+                        <tr class="bg-stone-100 text-stone-800">
+                            <th class="py-3 px-4 text-left border-b">流派</th>
+                            <th class="py-3 px-4 text-left border-b">關鍵視角</th>
+                            <th class="py-3 px-4 text-left border-b">對應現實 (晶圓魁罡)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b">
+                            <td class="py-2 px-4 font-bold">子平格局</td>
+                            <td class="py-2 px-4 text-red-800">去濁留清 (丙辛合)</td>
+                            <td class="py-2 px-4">商業模式的取捨 (不與客戶競爭)，專注代工。</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="py-2 px-4 font-bold">窮通調候</td>
+                            <td class="py-2 px-4 text-blue-800">火煉真金 (秋金喜火)</td>
+                            <td class="py-2 px-4">在高壓競爭環境 (火) 中，鍛造出堅韌的企業 (金)。</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-2 px-4 font-bold">盲派象法</td>
+                            <td class="py-2 px-4 text-stone-600">金火成器</td>
+                            <td class="py-2 px-4">半導體晶圓製造 (金屬+光刻/高溫) 的行業屬性。</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="py-2 px-4 font-bold">新派旺衰</td>
+                            <td class="py-2 px-4 text-green-800">身旺殺旺</td>
+                            <td class="py-2 px-4">強勢的領導風格，鐵腕治理，權力集中。</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="mt-4 text-stone-600 italic text-center">結論：無論哪一派推演，皆指向「高壓環境下的超級領袖」。而2026年之凶險，則是各派共識的最大生命關卡。</p>
+            </div>
+        </section>
+
         <!-- Footer -->
         <footer class="mt-16 pt-10 border-t-2 border-stone-300 text-center">
             <div class="mb-4">
@@ -775,7 +923,7 @@
 
     </div>
 
-    <!-- Script for Compass Logic -->
+    <!-- Script for Compass Logic (Preserved) -->
     <script>
         const stems = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
         const branches = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
@@ -794,7 +942,6 @@
             'water': 'bazi-water'
         };
 
-        // Dayun Data (Reused logic)
         const dayunData = [
             { start: 1936, gan: '乙', zhi: '未' },
             { start: 1946, gan: '甲', zhi: '午' },
@@ -826,7 +973,6 @@
             const compass = document.getElementById('float-compass');
             if (compass.style.display === 'none' || compass.style.display === '') {
                 compass.style.display = 'block';
-                // Trigger animation by setting opacity shortly after display block
                 setTimeout(() => { compass.style.opacity = '1'; }, 10);
             } else {
                 compass.style.display = 'none';
@@ -839,11 +985,9 @@
             const age = compassYear - birthYear + 1;
             document.getElementById('compass-age').innerText = `(${age}歲)`;
 
-            // 1. Calculate LiuNian
             const ln = getGanZhi(compassYear);
             renderCompassPillar('cp-liunian', ln.gan, ln.zhi);
 
-            // 2. Find DaYun
             let currentDayun = null;
             for (let i = 0; i < dayunData.length; i++) {
                 if (compassYear >= dayunData[i].start) {
@@ -865,11 +1009,9 @@
             ganEl.innerText = gan;
             zhiEl.innerText = zhi;
 
-            // Remove old color classes
             ganEl.className = 'compass-char';
             zhiEl.className = 'compass-char';
 
-            // Add new color classes
             if (wuxingMap[gan]) ganEl.classList.add(colorClassMap[wuxingMap[gan]]);
             if (wuxingMap[zhi]) zhiEl.classList.add(colorClassMap[wuxingMap[zhi]]);
         }
@@ -879,9 +1021,7 @@
             updateCompass();
         }
 
-        // Initialize Compass
         updateCompass();
-
     </script>
 </body>
 </html>
