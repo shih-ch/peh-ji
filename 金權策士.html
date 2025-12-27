@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金權策士：八字命理全方位驗證報告</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f0f2f5;
+            color: #374151;
+            line-height: 1.6;
+            padding-bottom: 400px; /* Space for the floating tool */
+        }
+        
+        h1, h2, h3, .serif-font {
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        /* Five Elements Colors */
+        .wood { color: #15803d; }     /* Green-700 */
+        .fire { color: #dc2626; }     /* Red-600 */
+        .earth { color: #b45309; }    /* Amber-700 */
+        .metal { color: #ca8a04; }    /* Yellow-600 */
+        .water { color: #2563eb; }    /* Blue-600 */
+
+        .bg-wood { background-color: #dcfce7; color: #14532d; }
+        .bg-fire { background-color: #fee2e2; color: #7f1d1d; }
+        .bg-earth { background-color: #fef3c7; color: #78350f; }
+        .bg-metal { background-color: #fef9c3; color: #854d0e; }
+        .bg-water { background-color: #dbeafe; color: #1e3a8a; }
+
+        .pillar-card {
+            background: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .pillar-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .hidden-stem-row {
+            font-size: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed #e5e7eb;
+            padding: 2px 0;
+        }
+        .hidden-stem-row:last-child {
+            border-bottom: none;
+        }
+
+        .school-card {
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+        }
+        .school-card:hover {
+            background-color: #f8fafc;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 1.25rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #e5e7eb;
+        }
+
+        /* Floating Tool Styles */
+        #bazi-calculator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 50;
+            box-shadow: 0 -5px 25px rgba(0,0,0,0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @media (max-width: 768px) {
+            #bazi-calculator {
+                bottom: 0;
+                right: 0;
+                left: 0;
+                border-radius: 1.5rem 1.5rem 0 0;
+            }
+        }
+        
+        /* Specific widths for calculator */
+        .calc-width {
+            width: 100%;
+        }
+        @media (min-width: 768px) {
+            .calc-width {
+                width: 750px; /* Wider to fit 6 pillars */
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-12 px-4 shadow-xl relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-4 opacity-10">
+            <i class="fas fa-yin-yang text-9xl"></i>
+        </div>
+        <div class="max-w-6xl mx-auto text-center relative z-10">
+            <div class="inline-block px-3 py-1 border border-yellow-500 text-yellow-500 rounded-full text-xs tracking-widest mb-3 uppercase">八字定盤暨生平驗證</div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 tracking-wide serif-font">金權策士 八字全方位分析報告</h1>
+            <p class="text-slate-300 text-lg mb-6 max-w-2xl mx-auto">整合三份深度命理報告：從定盤推論、格局解析到流派觀點的完整紀錄</p>
+            
+            <div class="flex flex-wrap justify-center gap-4 text-sm text-slate-200 bg-white/10 backdrop-blur-sm py-3 px-6 rounded-lg inline-flex shadow-lg">
+                <span><i class="fas fa-calendar-day mr-2 text-yellow-500"></i>西曆 1936年 7月 2日</span>
+                <span><i class="fas fa-clock mr-2 text-yellow-500"></i>午時 (11:24)</span>
+                <span><i class="fas fa-male mr-2 text-yellow-500"></i>乾造 (乙酉日)</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-10 space-y-12">
+
+        <!-- Section 1: 定盤核心邏輯 -->
+        <section id="verification">
+            <div class="flex items-center mb-6">
+                <span class="w-1 h-8 bg-purple-600 mr-3 rounded-full"></span>
+                <h2 class="text-2xl font-bold text-slate-800 serif-font">第一章：定盤核心證據與邏輯</h2>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-md p-6 border border-slate-100">
+                <p class="mb-6 text-slate-600">
+                    針對 1936 年出生的<strong>金權策士</strong>，主要有兩個可能的生日：5月14日（丙申日）與 7月2日（乙酉日）。
+                    經詳細比對生平，確認為 <strong>7月2日（乙酉日 午時）</strong>。以下為排除丙申日、鎖定乙酉日的兩大關鍵證據詳解：
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <!-- Evidence 1 -->
+                    <div class="bg-purple-50 p-6 rounded-lg border border-purple-100 flex flex-col h-full">
+                        <h3 class="font-bold text-purple-900 mb-4 flex items-center text-lg"><i class="fas fa-user-slash mr-2"></i> 證據一：父母早逝與長姊如母</h3>
+                        
+                        <div class="mb-4">
+                            <span class="text-xs font-bold bg-white text-purple-800 px-2 py-1 rounded border border-purple-200">真實史實</span>
+                            <p class="text-sm text-slate-700 mt-2 ml-1">
+                                父親於 1941 (6歲) 因病過世；母親於 1948 (12歲) 過世。<strong>自幼失怙，由大姐扶養長大。</strong>
+                            </p>
+                        </div>
+                        
+                        <div class="flex-1">
+                            <span class="text-xs font-bold bg-purple-200 text-purple-900 px-2 py-1 rounded">命理詳解 (乙酉日)</span>
+                            <div class="text-sm text-slate-700 mt-2 space-y-3 leading-relaxed">
+                                <p>
+                                    <strong>1. 子午天地沖 (父母緣薄)：</strong><br>
+                                    年支「子水」（母）與月令「午火」（父母宮）發生正沖。月令提綱沖剋年支，代表父母緣分極薄，根基動搖。
+                                </p>
+                                <p>
+                                    <strong>2. 藤蘿繫甲 (長姊如母)：</strong><br>
+                                    <span class="text-blue-700 font-bold">這是關鍵！</span>月干透出<strong>「甲木 (劫財/手足)」</strong>。乙木(日主)為藤蔓，甲木為大樹。乙木身弱，本能地纏繞甲木而生，稱為「藤蘿繫甲」。<br>
+                                    <strong>含義：</strong>甲木坐在父母宮(月柱)的位置上，代表在父母缺席後，由<strong>大姊(甲木)</strong>代行父母職責，支撐乙木長大。
+                                </p>
+                                <p>
+                                    <strong>3. 喪親應期 (1941/1948)：</strong><br>
+                                    1941辛巳年會火局焚父星；1948戊子年子水填實引發沖剋去母星。時間點與命盤結構完全吻合。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-4 border-t border-purple-200 text-xs text-slate-500 italic space-y-1">
+                            <p>*對照組 (5月14日 丙申日)：年月支為「子、巳」，無直接沖剋，難以解釋連續喪親之痛。</p>
+                            <p>*亦無「藤蘿繫甲」結構，無法解釋為何由手足帶大。</p>
+                        </div>
+                    </div>
+
+                    <!-- Evidence 2: Updated with detailed analysis -->
+                    <div class="bg-purple-50 p-6 rounded-lg border border-purple-100 flex flex-col h-full">
+                        <h3 class="font-bold text-purple-900 mb-4 flex items-center text-lg"><i class="fas fa-home-damage mr-2"></i> 證據二：時辰與豪宅法拍</h3>
+                        
+                        <div class="mb-4">
+                            <span class="text-xs font-bold bg-white text-purple-800 px-2 py-1 rounded border border-purple-200">真實史實</span>
+                            <p class="text-sm text-slate-700 mt-2 ml-1">
+                                長子經商失敗欠巨債，導致父親晚年豪宅遭法拍 (2015/2019)。
+                            </p>
+                        </div>
+                        
+                        <div class="flex-1">
+                            <span class="text-xs font-bold bg-purple-200 text-purple-900 px-2 py-1 rounded">命理詳解 (壬午時)</span>
+                            <div class="text-sm text-slate-700 mt-2 space-y-3 leading-relaxed">
+                                <p>
+                                    <strong>1. 命理定位：</strong><br>
+                                    天干<strong>壬水 (正印)</strong>：代表房產、名譽。<br>
+                                    地支<strong>午火 (子女宮)</strong>：代表子女。
+                                </p>
+                                <p>
+                                    <strong>2. 破財機制 (蓋頭截腳)：</strong><br>
+                                    午火當中藏有<strong>己土 (偏財)</strong>。偏財在忌神宮位代表投機與債務。己土由下往上剋制壬水，形成「土剋水」的<strong>「財壞印」</strong>結構。<br>
+                                    <span class="text-slate-500 text-xs block mt-1 border-l-2 border-purple-300 pl-2">
+                                        白話解碼：子女宮內部的債務問題(己)，直接損耗了父親名下的房產(壬)。
+                                    </span>
+                                </p>
+                                <p>
+                                    <strong>3. 時間密碼 (應期)：</strong><br>
+                                    <span class="font-bold">2015 乙未年：</span>午未六合，合動子女宮，債務黑洞爆發。<br>
+                                    <span class="font-bold">2019 己亥年：</span>天干己土直接透出，剋掉壬水印星，房產法拍定案。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-4 border-t border-purple-200 text-xs text-slate-500 italic">
+                            *結論：子女的作為(午)產生了債務(己)，最終損耗了父親的房產(壬)，此推論無誤。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: 八字排盤與藏干 (With Strength & Shen Sha) -->
+        <section id="chart">
+            <div class="flex items-center mb-6">
+                <span class="w-1 h-8 bg-red-600 mr-3 rounded-full"></span>
+                <h2 class="text-2xl font-bold text-slate-800 serif-font">第二章：八字排盤與能量神煞</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                
+                <!-- 時柱 -->
+                <div class="pillar-card rounded-xl p-5 border border-slate-200 shadow-sm relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-blue-500"></div>
+                    <div class="text-center mb-4">
+                        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">時柱 (晚年/子女)</div>
+                        <div class="text-xs text-slate-500">壬午時</div>
+                    </div>
+                    
+                    <div class="text-center mb-6">
+                        <div class="text-xs text-slate-500 mb-1">正印</div>
+                        <div class="text-5xl font-bold serif-font water mb-2">壬</div>
+                        <div class="text-5xl font-bold serif-font fire mb-2">午</div>
+                        <div class="text-xs text-slate-500">食神</div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-lg p-3 text-xs group-hover:bg-blue-50 transition-colors">
+                        <div class="text-center font-bold text-slate-500 mb-2 border-b pb-1">地支藏干</div>
+                        <div class="hidden-stem-row">
+                            <span class="fire font-bold">丁 (火)</span>
+                            <span class="text-slate-600">食神 [本氣]</span>
+                        </div>
+                        <div class="hidden-stem-row">
+                            <span class="earth font-bold">己 (土)</span>
+                            <span class="text-slate-600">偏財 [中氣]</span>
+                        </div>
+                        <div class="mt-2 text-center text-red-500 italic scale-90">
+                            "財壞印之根源"
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 日柱 -->
+                <div class="pillar-card rounded-xl p-5 border-2 border-yellow-400 shadow-md transform scale-105 z-10">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-green-600"></div>
+                    <div class="text-center mb-4">
+                        <div class="text-xs font-bold text-yellow-600 uppercase tracking-wider">日柱 (命主/配偶)</div>
+                        <div class="text-xs text-slate-500">乙酉日</div>
+                    </div>
+                    
+                    <div class="text-center mb-6">
+                        <div class="text-xs text-slate-500 mb-1">日元</div>
+                        <div class="text-5xl font-bold serif-font wood mb-2">乙</div>
+                        <div class="text-5xl font-bold serif-font metal mb-2">酉</div>
+                        <div class="text-xs text-slate-500">七殺</div>
+                    </div>
+
+                    <div class="bg-yellow-50 rounded-lg p-3 text-xs">
+                        <div class="text-center font-bold text-yellow-600 mb-2 border-b border-yellow-200 pb-1">地支藏干</div>
+                        <div class="hidden-stem-row">
+                            <span class="metal font-bold">辛 (金)</span>
+                            <span class="text-slate-600">七殺 [本氣]</span>
+                        </div>
+                        <div class="mt-2 text-center text-yellow-700 italic scale-90">
+                            "坐絕地，殺重身輕"
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 月柱 -->
+                <div class="pillar-card rounded-xl p-5 border border-slate-200 shadow-sm relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-green-500"></div>
+                    <div class="text-center mb-4">
+                        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">月柱 (父母/事業)</div>
+                        <div class="text-xs text-slate-500">甲午月</div>
+                    </div>
+                    
+                    <div class="text-center mb-6">
+                        <div class="text-xs text-slate-500 mb-1">劫財</div>
+                        <div class="text-5xl font-bold serif-font wood mb-2">甲</div>
+                        <div class="text-5xl font-bold serif-font fire mb-2">午</div>
+                        <div class="text-xs text-slate-500">食神</div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-lg p-3 text-xs group-hover:bg-green-50 transition-colors">
+                        <div class="text-center font-bold text-slate-500 mb-2 border-b pb-1">地支藏干</div>
+                        <div class="hidden-stem-row">
+                            <span class="fire font-bold">丁 (火)</span>
+                            <span class="text-slate-600">食神 [本氣]</span>
+                        </div>
+                        <div class="hidden-stem-row">
+                            <span class="earth font-bold">己 (土)</span>
+                            <span class="text-slate-600">偏財 [中氣]</span>
+                        </div>
+                        <div class="mt-2 text-center text-red-500 italic scale-90">
+                            "子午沖之戰場"
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Year Pillar -->
+                <div class="pillar-card rounded-xl p-5 border border-slate-200 shadow-sm relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-red-500"></div>
+                    <div class="text-center mb-4">
+                        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">年柱 (祖上/根基)</div>
+                        <div class="text-xs text-slate-500">丙子年</div>
+                    </div>
+                    
+                    <div class="text-center mb-6">
+                        <div class="text-xs text-slate-500 mb-1">傷官</div>
+                        <div class="text-5xl font-bold serif-font fire mb-2">丙</div>
+                        <div class="text-5xl font-bold serif-font water mb-2">子</div>
+                        <div class="text-xs text-slate-500">偏印</div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-lg p-3 text-xs group-hover:bg-red-50 transition-colors">
+                        <div class="text-center font-bold text-slate-500 mb-2 border-b pb-1">地支藏干</div>
+                        <div class="hidden-stem-row">
+                            <span class="water font-bold">癸 (水)</span>
+                            <span class="text-slate-600">偏印 [本氣]</span>
+                        </div>
+                        <div class="mt-2 text-center text-blue-500 italic scale-90">
+                            "全盤調候救星"
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Section: Strength & Shen Sha Analysis -->
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Strength Analysis -->
+                <div class="bg-white rounded-lg shadow-sm border border-slate-200 p-5">
+                    <h3 class="font-bold text-slate-800 mb-3 flex items-center">
+                        <i class="fas fa-balance-scale mr-2 text-indigo-600"></i> 身強身弱能量分析
+                    </h3>
+                    <div class="space-y-2 text-sm text-slate-600">
+                        <div class="flex justify-between border-b border-slate-100 pb-1">
+                            <span>日主本命</span>
+                            <span class="font-bold text-wood">乙木 (花草之木)</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-100 pb-1">
+                            <span>月令季節</span>
+                            <span class="font-bold text-fire">午月 (仲夏火旺)</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-100 pb-1">
+                            <span>地支通根</span>
+                            <span>無強根 (坐絕地)</span>
+                        </div>
+                        <div class="mt-2 bg-slate-50 p-2 rounded text-xs leading-relaxed">
+                            <strong>判定：極身弱 (喜印比)</strong><br>
+                            乙木生於午月，火炎土燥，且日支坐酉金剋身，全盤洩剋交加。唯賴年支「子」與時干「壬」兩點水氣救命。故<strong>「水 (印星)」</strong>為全盤性命之源。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shen Sha Analysis -->
+                <div class="bg-white rounded-lg shadow-sm border border-slate-200 p-5">
+                    <h3 class="font-bold text-slate-800 mb-3 flex items-center">
+                        <i class="fas fa-star mr-2 text-amber-500"></i> 神煞格局解碼
+                    </h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-0.5 rounded mr-2 mt-0.5 whitespace-nowrap">年支 子</span>
+                            <div>
+                                <strong class="text-slate-800">天乙貴人</strong>
+                                <p class="text-slate-500 text-xs">命中最吉之神。位於年柱代表獲得最高層峰(總統/長輩)的提拔與信任。</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-red-100 text-red-800 text-xs font-bold px-2 py-0.5 rounded mr-2 mt-0.5 whitespace-nowrap">月/時 午</span>
+                            <div>
+                                <strong class="text-slate-800">文昌貴人</strong>
+                                <p class="text-slate-500 text-xs">乙木見午為文昌。主學術成就、博士學位、聰明才智與智庫角色。</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-2 py-0.5 rounded mr-2 mt-0.5 whitespace-nowrap">日支 酉</span>
+                            <div>
+                                <strong class="text-slate-800">桃花 / 七殺</strong>
+                                <p class="text-slate-500 text-xs">「桃花帶殺」。雖有群眾魅力與異性緣，但也易因人際關係或緋聞招惹官非壓力。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 格局總結 -->
+            <div class="mt-6 bg-slate-800 text-slate-200 p-6 rounded-lg shadow-inner">
+                <h3 class="font-bold text-yellow-400 mb-2 border-b border-slate-600 pb-2">格局總結：傷官配印 / 食傷生財</h3>
+                <p class="text-sm md:text-base leading-relaxed">
+                    乙木生於午月，火炎土燥（食傷旺）。全盤最喜<strong>水（印星）</strong>來潤局生身，喜<strong>木（比劫）</strong>幫身。最忌燥土與強金。
+                    <br><br>
+                    <strong>成也印星：</strong>靠子水（學歷、李前總統）調候上位，貴氣所繫。<br>
+                    <strong>敗也財星：</strong>午火生己土，財來壞印。因錢財（黨產、債務）問題導致保護傘破裂，七殺（官司）攻身。
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 3: 史實與命理詳細對照 -->
+        <section id="comparison">
+            <div class="flex items-center mb-6">
+                <span class="w-1 h-8 bg-blue-600 mr-3 rounded-full"></span>
+                <h2 class="text-2xl font-bold text-slate-800 serif-font">第三章：史實與命理現象詳細對照</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-6">
+
+                <!-- 1. 父母存歿分析 -->
+                <div class="bg-white rounded-xl shadow border border-slate-200 p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600 mr-4 font-bold">
+                            01
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">早年刑剋與父母存歿</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-slate-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-slate-700 mb-2 border-b pb-1">真實史實</h4>
+                            <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1">
+                                <li>父親於 1941 (6歲) 因病過世。</li>
+                                <li>母親於 1948 (12歲) 過世。</li>
+                                <li>自幼失怙，家庭破碎，由大姊扶養長大。</li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-blue-900 mb-2 border-b border-blue-200 pb-1">命理解析：子午天地沖</h4>
+                            <p class="text-sm text-blue-800 leading-relaxed">
+                                <strong>「子午沖」</strong>是八字中最激烈的五行對抗。月令「午火」代表父母宮與家庭，年支「子水」代表母親星與祖蔭。<br>
+                                <strong>父星被焚：</strong>生於午月火炎土燥，財星（父）無水潤澤，見火即焚。1941辛巳年，巳午未會南方火局，火海一片，父星不存。<br>
+                                <strong>母星受沖：</strong>1948戊子年，流年「子」填實，引發原局子午大沖，水火不容，母星受損。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. 權力巔峰分析 -->
+                <div class="bg-white rounded-xl shadow border border-slate-200 p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4 font-bold">
+                            02
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">國師時代與權力巔峰</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-slate-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-slate-700 mb-2 border-b pb-1">真實史實</h4>
+                            <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1">
+                                <li>1990年代被尊稱為「金權策士」。</li>
+                                <li>1993年接掌黨營事業，「大掌櫃」權傾一時。</li>
+                                <li>層峰最信任的財經智囊。</li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-blue-900 mb-2 border-b border-blue-200 pb-1">命理解析：乙庚合官</h4>
+                            <p class="text-sm text-blue-800 leading-relaxed">
+                                <strong>庚子大運 (1988-1997)：</strong>這是人生最輝煌的十年。<br>
+                                <strong>天干「乙庚合」：</strong>日主乙木與大運庚金（官星）相合。身官相合，代表這個時期他「擁抱權力」，與政府、黨國體制合而為一。<br>
+                                <strong>地支「子水」：</strong>子水是用神（印），代表長輩、層峰支持。子水強勢潤局，解了原局的火燥，讓他能游刃有餘地運作權力。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. 牢獄之災分析 -->
+                <div class="bg-white rounded-xl shadow border border-slate-200 p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 mr-4 font-bold">
+                            03
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">政黨輪替與牢獄之災</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-slate-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-slate-700 mb-2 border-b pb-1">真實史實</h4>
+                            <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1">
+                                <li>2000年政黨輪替後失去政治保護。</li>
+                                <li>2002/2003年涉國安密帳案收押。</li>
+                                <li>2008年正式入獄服刑。</li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-blue-900 mb-2 border-b border-blue-200 pb-1">命理解析：財壞印生殺</h4>
+                            <p class="text-sm text-blue-800 leading-relaxed">
+                                <strong>辛丑大運 (1998-2007)：</strong>運勢急轉直下。<br>
+                                <strong>天干「辛金七殺」：</strong>辛金透出，直接剋伐乙木。之前的「合官」（庚）變成了無情的「剋身」（辛）。<br>
+                                <strong>地支「子丑合土」：</strong>這是最致命的。丑土（財庫）合住了子水（印星用神）。印星代表保護傘與自由。<strong>「財來壞印」</strong>，即因金錢問題導致失去自由，且無法化解七殺的攻擊。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. 晚年財運分析 (Updated with trigger points) -->
+                <div class="bg-white rounded-xl shadow border border-slate-200 p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 mr-4 font-bold">
+                            04
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">晚景與子女財運</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-slate-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-slate-700 mb-2 border-b pb-1">真實史實</h4>
+                            <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1">
+                                <li>長子經商失敗欠巨債。</li>
+                                <li>導致豪宅於2015、2019遭法拍。</li>
+                                <li>89歲高齡仍有腳疾摔傷困擾。</li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-blue-900 mb-2 border-b border-blue-200 pb-1">命理解析：時柱財壞印的應期</h4>
+                            <p class="text-sm text-blue-800 leading-relaxed">
+                                <strong>命局隱患：</strong>午火(子女)中藏己土(偏財)，由下往上剋壬水(房產)。<br>
+                                <strong>引爆點一 (2015 乙未年)：</strong>流年未土與時支午火六合(午未合)，合動子女宮，債務危機爆發。<br>
+                                <strong>引爆點二 (2019 己亥年)：</strong>流年天干「己土」直接透出，正面剋制壬水。「財壞印」格局完全應驗，導致房產法拍定案。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 4: 特別收錄 -->
+        <section id="master-advice">
+            <div class="flex items-center mb-6">
+                <span class="w-1 h-8 bg-amber-600 mr-3 rounded-full"></span>
+                <h2 class="text-2xl font-bold text-slate-800 serif-font">第四章：特別收錄 — 南懷瑾的預言與勸誡</h2>
+            </div>
+
+            <div class="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl shadow-md border border-amber-100 overflow-hidden">
+                <div class="md:flex">
+                    <div class="p-8 md:w-3/5">
+                        <div class="text-amber-800 text-sm font-bold uppercase tracking-widest mb-2">1990年 (庚午) 的關鍵抉擇</div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4 serif-font">「黨政煩雜如身體包袱，不如專注學術以求自由。」</h3>
+                        <p class="text-slate-700 leading-relaxed mb-4">
+                            1990年，金權策士正值學界高峰。國學大師<strong>南懷瑾</strong>（其佛學導師）預見愛徒若入仕途將捲入政商漩渦，曾以禪機苦勸：<strong>「行政責任重、黨政更煩」</strong>，力阻其接任國民黨黨職。
+                        </p>
+                        <p class="text-slate-600 text-sm italic border-l-4 border-amber-400 pl-4 py-1">
+                            遺憾的是，策士未聽師勸。1993年接下「大掌櫃」一職，雖權傾一時，卻也如南師所言，埋下了日後身陷囹圄的「因果」。
+                        </p>
+                    </div>
+                    <div class="bg-white p-8 md:w-2/5 border-l border-amber-100 flex flex-col justify-center">
+                        <div class="text-center mb-4">
+                            <span class="inline-block bg-slate-800 text-white text-xs px-3 py-1 rounded-full">命理視角解碼</span>
+                        </div>
+                        <ul class="space-y-4 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-fire text-red-500 mt-1 mr-3"></i>
+                                <div>
+                                    <strong class="text-slate-800 block">1990 庚午年 (流年引動)</strong>
+                                    <span class="text-slate-600">流年地支「午火」引動原局忌神，直沖大運「子水」(印星)。</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-user-graduate text-blue-600 mt-1 mr-3"></i>
+                                <div>
+                                    <strong class="text-slate-800 block">印星的警告</strong>
+                                    <span class="text-slate-600">「子水」代表智慧、老師(南懷瑾)。水火交戰，即是「智慧」試圖煞住「慾望(火)」的車。</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-exclamation-triangle text-amber-500 mt-1 mr-3"></i>
+                                <div>
+                                    <strong class="text-slate-800 block">一念之差</strong>
+                                    <span class="text-slate-600">若聽師勸(從印)，則保學術清譽；選擇入仕(從官殺)，雖得權卻壞了印(自由)。</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: 各派觀點 -->
+        <section id="schools">
+            <div class="flex items-center mb-6">
+                <span class="w-1 h-8 bg-emerald-600 mr-3 rounded-full"></span>
+                <h2 class="text-2xl font-bold text-slate-800 serif-font">第五章：港中台各派論命觀點</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- 台灣傳統子平 -->
+                <div class="school-card bg-white p-6 rounded-xl shadow-sm border-emerald-500">
+                    <h3 class="font-bold text-lg mb-3 flex items-center text-emerald-800">
+                        <i class="fas fa-book-reader text-emerald-500 mr-2"></i> 台灣傳統子平派
+                    </h3>
+                    <div class="text-sm text-slate-600 space-y-2">
+                        <p><strong class="text-emerald-700">核心：</strong>調候為急，身弱喜印。</p>
+                        <p><strong>論斷：</strong>夏木枯焦，以「水」為第一救星。庚子大運水旺，格局大成。辛丑大運，濕土晦火生金，且合絆子水用神，故有牢獄之災。</p>
+                    </div>
+                </div>
+
+                <!-- 中國盲派命理 -->
+                <div class="school-card bg-white p-6 rounded-xl shadow-sm border-red-500">
+                    <h3 class="font-bold text-lg mb-3 flex items-center text-red-800">
+                        <i class="fas fa-eye-slash text-red-500 mr-2"></i> 中國盲派命理
+                    </h3>
+                    <div class="text-sm text-slate-600 space-y-2">
+                        <p><strong class="text-red-700">核心：</strong>做功與象法。</p>
+                        <p><strong>論斷：</strong>命局意在用「子水（印/權）」去制「午火（財）」。子午沖代表運作龐大資金。辛丑運「丑午穿」，丑土壞了午火做功的方式，且倒食（梟神奪食），失去自由。</p>
+                    </div>
+                </div>
+
+                <!-- 香港結構/新派 -->
+                <div class="school-card bg-white p-6 rounded-xl shadow-sm border-blue-500">
+                    <h3 class="font-bold text-lg mb-3 flex items-center text-blue-800">
+                        <i class="fas fa-cubes text-blue-500 mr-2"></i> 香港結構/新派
+                    </h3>
+                    <div class="text-sm text-slate-600 space-y-2">
+                        <p><strong class="text-blue-700">核心：</strong>傷官駕殺。</p>
+                        <p><strong>論斷：</strong>傷官（丙）高透，本可制殺（酉）。但在辛丑運，丙辛相合，傷官貪合忘剋，制不住七殺，導致七殺攻身。一生在高風險權力中心遊走。</p>
+                    </div>
+                </div>
+
+                <!-- 現代心理命理 -->
+                <div class="school-card bg-white p-6 rounded-xl shadow-sm border-purple-500">
+                    <h3 class="font-bold text-lg mb-3 flex items-center text-purple-800">
+                        <i class="fas fa-brain text-purple-500 mr-2"></i> 現代心理命理
+                    </h3>
+                    <div class="text-sm text-slate-600 space-y-2">
+                        <p><strong class="text-purple-700">核心：</strong>性格決定命運。</p>
+                        <p><strong>論斷：</strong>乙木能屈能伸。傷官過旺導致過度樂觀與賭徒心態（高風險投資）。印星保護讓他即使入獄，出獄後仍保有社會地位，未致身敗名裂。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: 詳細人生大運時間軸 -->
+        <section id="timeline">
+            <div class="flex items-center mb-6">
+                <span class="w-1 h-8 bg-slate-600 mr-3 rounded-full"></span>
+                <h2 class="text-2xl font-bold text-slate-800 serif-font">第六章：人生大運流年詳細時間軸</h2>
+            </div>
+
+            <div class="relative ml-4 md:ml-6 space-y-8 py-2">
+                <div class="timeline-line"></div>
+
+                <!-- Phase 1: 潛龍勿用 -->
+                <div class="relative pl-10 mb-10">
+                    <div class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-2 bg-slate-100 inline-block px-2 py-1 rounded">1936 - 1977 潛龍勿用 (金土運)</div>
+                    
+                    <!-- 1941 -->
+                    <div class="relative mb-6">
+                        <span class="absolute left-[-27px] top-1.5 w-3 h-3 rounded-full bg-red-400 border-2 border-white z-10"></span>
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-100">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-slate-800">1941 (辛巳年) - 6歲</span>
+                                <span class="text-xs text-red-500 font-bold border border-red-200 px-2 rounded">父喪</span>
+                            </div>
+                            <p class="text-sm text-slate-600">巳午未會南方火局，火海焚燒，財星（父）受剋嚴重。隨後1948年（戊子）母喪，子午沖起。</p>
+                        </div>
+                    </div>
+
+                    <!-- 1966 -->
+                    <div class="relative mb-6">
+                        <span class="absolute left-[-27px] top-1.5 w-3 h-3 rounded-full bg-slate-400 border-2 border-white z-10"></span>
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-100">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-slate-800">1966 (丙午年) - 30歲</span>
+                                <span class="text-xs text-blue-500 font-bold border border-blue-200 px-2 rounded">遠行留學</span>
+                            </div>
+                            <p class="text-sm text-slate-600">傷官之年，伏吟月令。傷官主變動、遠行、深造。赴美攻讀學位，累積未來資本。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 2: 飛龍在天 -->
+                <div class="relative pl-10 mb-10">
+                    <div class="text-sm font-bold text-blue-600 uppercase tracking-widest mb-2 bg-blue-50 inline-block px-2 py-1 rounded">1978 - 1997 飛龍在天 (水運巔峰)</div>
+                    
+                    <!-- 1993 -->
+                    <div class="relative mb-6">
+                        <span class="absolute left-[-27px] top-1.5 w-4 h-4 rounded-full bg-blue-600 border-2 border-white z-10 shadow-lg shadow-blue-200"></span>
+                        <div class="bg-blue-50 p-4 rounded-lg shadow-sm border border-blue-200">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-blue-900 text-lg">1993 (癸酉年) - 57歲</span>
+                                <span class="text-xs bg-blue-600 text-white px-2 py-1 rounded">權力巔峰</span>
+                            </div>
+                            <p class="text-sm text-blue-800 font-medium">庚子大運 / 癸酉流年。金水相生，官印相護。</p>
+                            <p class="text-sm text-blue-700 mt-1">接掌國民黨投管會主委。天干「乙庚合官」掌權，地支「子」水潤局解燥，國師地位確立。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 3: 亢龍有悔 -->
+                <div class="relative pl-10 mb-10">
+                    <div class="text-sm font-bold text-red-600 uppercase tracking-widest mb-2 bg-red-50 inline-block px-2 py-1 rounded">1998 - 2007 亢龍有悔 (辛丑殺運)</div>
+                    
+                    <!-- 2003 -->
+                    <div class="relative mb-6">
+                        <span class="absolute left-[-27px] top-1.5 w-3 h-3 rounded-full bg-red-500 border-2 border-white z-10"></span>
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-100">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-slate-800">2003 (癸未年) - 67歲</span>
+                                <span class="text-xs text-red-500 font-bold border border-red-200 px-2 rounded">收押禁見</span>
+                            </div>
+                            <p class="text-sm text-slate-600">未土衝開丑土（金庫/殺庫），七殺攻身。國安密帳案爆發，身陷囹圄。</p>
+                        </div>
+                    </div>
+
+                    <!-- 2008 -->
+                    <div class="relative mb-6">
+                        <span class="absolute left-[-27px] top-1.5 w-3 h-3 rounded-full bg-slate-600 border-2 border-white z-10"></span>
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-100">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-slate-800">2008 (戊子年) - 72歲</span>
+                                <span class="text-xs bg-slate-800 text-white px-2 py-1 rounded">入獄服刑</span>
+                            </div>
+                            <p class="text-sm text-slate-600">辛丑運末。流年戊土（正財）剋制子水（印星）。「財壞印」格局應驗，正式入獄。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 4: 晚景餘暉 -->
+                <div class="relative pl-10">
+                    <div class="text-sm font-bold text-green-600 uppercase tracking-widest mb-2 bg-green-50 inline-block px-2 py-1 rounded">2008 - 2027 晚景餘暉 (水木運)</div>
+                    
+                    <!-- 2025 -->
+                    <div class="relative mb-6">
+                        <span class="absolute left-[-27px] top-1.5 w-3 h-3 rounded-full bg-green-500 border-2 border-white z-10"></span>
+                        <div class="bg-green-50 p-4 rounded-lg shadow-sm border border-green-100">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-green-900">2025 (乙巳年) - 89歲</span>
+                                <span class="text-xs text-green-700 font-bold border border-green-200 px-2 rounded">現況</span>
+                            </div>
+                            <p class="text-sm text-green-800"><strong>癸卯大運。</strong>卯酉沖（祿神沖七殺），應驗腳部摔傷、蜂窩性組織炎。印星透出，心態轉為佛系養生。</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 7: 命理微觀辨證 -->
+        <section id="deep-dive">
+            <div class="flex items-center mb-6">
+                <span class="w-1 h-8 bg-orange-600 mr-3 rounded-full"></span>
+                <h2 class="text-2xl font-bold text-slate-800 serif-font">第七章：命理微觀辨證：運勢的「同」與「異」</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Card 1: Water -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border-t-4 border-blue-500">
+                    <div class="p-6">
+                        <div class="text-4xl text-blue-100 absolute right-4 top-4 opacity-50"><i class="fas fa-water"></i></div>
+                        <h3 class="font-bold text-lg text-slate-800 mb-3 relative z-10">「水運」的兩面性</h3>
+                        <div class="space-y-3 text-sm relative z-10">
+                            <div class="bg-blue-50 p-2 rounded">
+                                <span class="text-blue-700 font-bold block mb-1">同：皆為喜用</span>
+                                <p class="text-slate-600">命中缺水，逢水年理應有貴人與轉機。</p>
+                            </div>
+                            <div class="border-l-2 border-slate-200 pl-2">
+                                <span class="text-slate-700 font-bold block mb-1">異：生入 vs 剋入</span>
+                                <p class="text-slate-600 mb-2"><span class="font-bold text-blue-600">1993 (癸酉)：</span>金生水。權力(金)生助名聲(水)，故能登頂國師。</p>
+                                <p class="text-slate-600"><span class="font-bold text-slate-600">2008 (戊子)：</span>土剋水。流年天干戊土(財/獄)直接蓋頭剋死子水(自由)，故雖有水卻入獄。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Wealth -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border-t-4 border-yellow-500">
+                    <div class="p-6">
+                        <div class="text-4xl text-yellow-100 absolute right-4 top-4 opacity-50"><i class="fas fa-coins"></i></div>
+                        <h3 class="font-bold text-lg text-slate-800 mb-3 relative z-10">「財星」的賓主論</h3>
+                        <div class="space-y-3 text-sm relative z-10">
+                            <div class="bg-yellow-50 p-2 rounded">
+                                <span class="text-yellow-700 font-bold block mb-1">同：皆掌鉅款</span>
+                                <p class="text-slate-600">一生周旋於數千億資金與資產之間。</p>
+                            </div>
+                            <div class="border-l-2 border-slate-200 pl-2">
+                                <span class="text-slate-700 font-bold block mb-1">異：外財 vs 內財</span>
+                                <p class="text-slate-600 mb-2"><span class="font-bold text-blue-600">壯年 (黨產)：</span>管的是「賓位」(別人/月令)的錢。身弱靠印(權力)護身，能運作自如。</p>
+                                <p class="text-slate-600"><span class="font-bold text-red-600">晚年 (家產)：</span>管的是「主位」(自己/時支)的債。當問題回到家裡，身弱不堪任財，財便破印(法拍)。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Talent -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border-t-4 border-red-500">
+                    <div class="p-6">
+                        <div class="text-4xl text-red-100 absolute right-4 top-4 opacity-50"><i class="fas fa-fire"></i></div>
+                        <h3 class="font-bold text-lg text-slate-800 mb-3 relative z-10">「傷官」的貴與災</h3>
+                        <div class="space-y-3 text-sm relative z-10">
+                            <div class="bg-red-50 p-2 rounded">
+                                <span class="text-red-700 font-bold block mb-1">同：皆為狂傲</span>
+                                <p class="text-slate-600">才華洋溢、敢言、不畏強權的性格始終如一。</p>
+                            </div>
+                            <div class="border-l-2 border-slate-200 pl-2">
+                                <span class="text-slate-700 font-bold block mb-1">異：配印 vs 見官</span>
+                                <p class="text-slate-600 mb-2"><span class="font-bold text-blue-600">早年 (配印)：</span>有印星(學歷/李前總統)制化，傷官變成「改革魄力」與「學術地位」。</p>
+                                <p class="text-slate-600"><span class="font-bold text-red-600">衰運 (見官)：</span>印星受損，傷官無制。狂傲變成「目無法紀」，最終招惹官非與牢獄。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Floating Bazi Calculator -->
+        <div id="bazi-calculator" class="bg-white border border-slate-200 rounded-t-2xl md:rounded-2xl shadow-2xl overflow-hidden calc-width">
+            <!-- Header -->
+            <div class="bg-slate-800 text-white p-3 flex justify-between items-center cursor-pointer" onclick="toggleCalculator()">
+                <div class="text-sm font-bold flex items-center">
+                    <i class="fas fa-calculator mr-2 text-yellow-500"></i>
+                    大運流年速查儀
+                </div>
+                <i id="calc-toggle-icon" class="fas fa-chevron-up"></i>
+            </div>
+            
+            <!-- Content -->
+            <div id="calc-content" class="p-4 bg-slate-50 transition-all duration-300" style="max-height: 500px;">
+                <!-- Controls -->
+                <div class="mb-4">
+                    <label class="block text-xs font-bold text-slate-500 mb-1">查詢年份 (西元)</label>
+                    <div class="relative">
+                        <select id="year-select" onchange="calculateBazi()" class="w-full border border-slate-300 rounded px-3 py-2 text-center font-bold text-lg text-slate-800 bg-white shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer">
+                            <!-- JS will populate options -->
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500">
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
+                    <div id="age-display" class="text-center text-xs text-slate-500 mt-2 font-medium">虛歲 58 歲</div>
+                </div>
+
+                <!-- Result Grid (6 Pillars) -->
+                <div class="grid grid-cols-6 gap-1 md:gap-2">
+                    <!-- Dynamic: Time, Day, Month, Year, Big Luck, Annual -->
+                    <!-- We use containers for each -->
+                    
+                    <!-- 1. Time -->
+                    <div id="pillar-time" class="pillar-box"></div>
+                    <!-- 2. Day -->
+                    <div id="pillar-day" class="pillar-box"></div>
+                    <!-- 3. Month -->
+                    <div id="pillar-month" class="pillar-box"></div>
+                    <!-- 4. Year -->
+                    <div id="pillar-year" class="pillar-box"></div>
+                    <!-- 5. Luck -->
+                    <div id="pillar-luck" class="pillar-box bg-blue-50"></div>
+                    <!-- 6. Annual -->
+                    <div id="pillar-annual" class="pillar-box bg-yellow-50"></div>
+                </div>
+
+                <div class="mt-3 text-xs text-center text-slate-400 italic" id="status-msg">
+                    計算中...
+                </div>
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <script>
+            // Data
+            const stems = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
+            const branches = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
+            
+            // Elements Mapping (0:Wood, 1:Fire, 2:Earth, 3:Metal, 4:Water)
+            const stemElements = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4];
+            const branchElements = [4, 2, 0, 0, 2, 1, 1, 2, 3, 3, 2, 4];
+            const elementClasses = ['wood', 'fire', 'earth', 'metal', 'water'];
+
+            // Ten Gods (Day Master: Yi Wood 乙, Index 1)
+            const tenGods = ['劫財', '比肩', '傷官', '食神', '正財', '偏財', '正官', '七殺', '正印', '偏印'];
+
+            // Hidden Stems Data (Branch Index -> Array of [StemIndex, TenGodName])
+            const hiddenStemsMap = [
+                [{s:9, n:'偏印'}], // Zi
+                [{s:5, n:'偏財'}, {s:9, n:'偏印'}, {s:7, n:'七殺'}], // Chou
+                [{s:0, n:'劫財'}, {s:2, n:'傷官'}, {s:4, n:'正財'}], // Yin
+                [{s:1, n:'比肩'}], // Mao
+                [{s:4, n:'正財'}, {s:1, n:'比肩'}, {s:9, n:'偏印'}], // Chen
+                [{s:2, n:'傷官'}, {s:4, n:'正財'}, {s:6, n:'正官'}], // Si
+                [{s:3, n:'食神'}, {s:5, n:'偏財'}], // Wu
+                [{s:5, n:'偏財'}, {s:3, n:'食神'}, {s:1, n:'比肩'}], // Wei
+                [{s:6, n:'正官'}, {s:8, n:'正印'}, {s:4, n:'正財'}], // Shen
+                [{s:7, n:'七殺'}], // You
+                [{s:4, n:'正財'}, {s:7, n:'七殺'}, {s:3, n:'食神'}], // Xu
+                [{s:8, n:'正印'}, {s:0, n:'劫財'}] // Hai
+            ];
+
+            // Big Luck Data (Start Year, Stem Index, Branch Index)
+            const bigLucks = [
+                {y: 1938, s: 1, b: 7}, // Yi Wei
+                {y: 1948, s: 2, b: 8}, // Bing Shen
+                {y: 1958, s: 3, b: 9}, // Ding You
+                {y: 1968, s: 4, b: 10}, // Wu Xu
+                {y: 1978, s: 5, b: 11}, // Ji Hai
+                {y: 1988, s: 6, b: 0}, // Geng Zi
+                {y: 1998, s: 7, b: 1}, // Xin Chou
+                {y: 2008, s: 8, b: 2}, // Ren Yin
+                {y: 2018, s: 9, b: 3}, // Gui Mao
+                {y: 2028, s: 0, b: 4}  // Jia Chen
+            ];
+            
+            // Static Chart Data: Time, Day, Month, Year
+            // Time: Ren Wu (8, 6)
+            // Day: Yi You (1, 9)
+            // Month: Jia Wu (0, 6)
+            // Year: Bing Zi (2, 0)
+            const staticPillars = [
+                { id: 'pillar-time', label: '時柱', s: 8, b: 6 },
+                { id: 'pillar-day', label: '日柱', s: 1, b: 9 },
+                { id: 'pillar-month', label: '月柱', s: 0, b: 6 },
+                { id: 'pillar-year', label: '年柱', s: 2, b: 0 }
+            ];
+
+            let isExpanded = true;
+
+            function populateYears() {
+                const select = document.getElementById('year-select');
+                const startYear = 1936; // Birth year
+                const endYear = 2035;   // ~100 years old
+                
+                let html = '';
+                for (let y = startYear; y <= endYear; y++) {
+                    const age = y - 1936 + 1;
+                    // Pre-select 1993 (Peak power year)
+                    const selected = y === 1993 ? 'selected' : '';
+                    html += `<option value="${y}" ${selected}>${y}年 (虛歲${age})</option>`;
+                }
+                select.innerHTML = html;
+            }
+
+            function toggleCalculator() {
+                const content = document.getElementById('calc-content');
+                const icon = document.getElementById('calc-toggle-icon');
+                if (isExpanded) {
+                    content.style.maxHeight = '0px';
+                    content.style.padding = '0 1rem'; 
+                    setTimeout(() => content.style.padding = '0', 300);
+                    icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+                } else {
+                    content.style.padding = '1rem';
+                    content.style.maxHeight = '500px';
+                    icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+                }
+                isExpanded = !isExpanded;
+                if(isExpanded) icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+                else icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+            }
+
+            function getTenGodName(stemIndex) {
+                return tenGods[stemIndex]; 
+            }
+
+            function renderHiddenStems(branchIndex) {
+                const hiddens = hiddenStemsMap[branchIndex];
+                return hiddens.map(h => {
+                    const elClass = elementClasses[stemElements[h.s]];
+                    return `<div class="flex justify-between text-[10px]"><span class="${elClass} font-bold">${stems[h.s]}</span><span class="text-slate-500 scale-90 origin-right">${h.n}</span></div>`;
+                }).join('');
+            }
+            
+            function renderPillarBox(elementId, label, stemIdx, branchIdx, isDynamic = false) {
+                const sClass = elementClasses[stemElements[stemIdx]];
+                const bClass = elementClasses[branchElements[branchIdx]];
+                const stemGod = getTenGodName(stemIdx);
+                const hiddensHTML = renderHiddenStems(branchIdx);
+                
+                const html = `
+                    <div class="bg-white rounded border border-slate-200 p-1 text-center shadow-sm h-full flex flex-col justify-between">
+                        <div class="text-[10px] text-slate-400 font-bold mb-1 uppercase tracking-wider border-b border-slate-100 pb-1">${label}</div>
+                        <div class="text-[10px] text-slate-500 mb-1 h-3 overflow-visible whitespace-nowrap">${stemGod}</div>
+                        <div class="flex flex-col items-center space-y-1 text-xl font-bold font-serif my-1">
+                            <span class="${sClass}">${stems[stemIdx]}</span>
+                            <span class="${bClass}">${branches[branchIdx]}</span>
+                        </div>
+                        <div class="bg-slate-50 rounded p-1 text-left mt-1 flex-1">
+                            <div class="space-y-0.5">
+                                ${hiddensHTML}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                document.getElementById(elementId).innerHTML = html;
+            }
+
+            function calculateBazi() {
+                const year = parseInt(document.getElementById('year-select').value);
+                if (isNaN(year)) return;
+
+                // 1. Calculate Age
+                const age = year - 1936 + 1;
+                document.getElementById('age-display').innerText = `虛歲 ${age} 歲`;
+
+                // 2. Determine Big Luck
+                let currentLuck = null;
+                for (let i = 0; i < bigLucks.length; i++) {
+                    if (year >= bigLucks[i].y && (i === bigLucks.length - 1 || year < bigLucks[i+1].y)) {
+                        currentLuck = bigLucks[i];
+                        break;
+                    }
+                }
+
+                // 3. Calculate Annual Pillar
+                const offset = year - 1936;
+                let yearStemIdx = (2 + offset) % 10;
+                let yearBranchIdx = (0 + offset) % 12;
+                if (yearStemIdx < 0) yearStemIdx += 10;
+                if (yearBranchIdx < 0) yearBranchIdx += 12;
+
+                // Render Static Pillars
+                staticPillars.forEach(p => {
+                    renderPillarBox(p.id, p.label, p.s, p.b);
+                });
+
+                // Render Dynamic Pillars
+                if (currentLuck) {
+                    renderPillarBox('pillar-luck', '大運', currentLuck.s, currentLuck.b, true);
+                    document.getElementById('status-msg').innerText = `金權策士 ${currentLuck.y-1936+1}-${currentLuck.y-1936+10} 歲大運`;
+                } else {
+                    document.getElementById('pillar-luck').innerHTML = '<div class="text-xs text-center p-2">無資料</div>';
+                }
+                
+                renderPillarBox('pillar-annual', '流年', yearStemIdx, yearBranchIdx, true);
+            }
+
+            // Initialize
+            populateYears();
+            document.getElementById('calc-toggle-icon').classList.add('fa-chevron-down');
+            calculateBazi();
+        </script>
+
+        <!-- Footer -->
+        <footer class="text-center text-slate-400 text-sm mt-12 mb-4 border-t border-slate-200 pt-8">
+            <p>本報告基於金權策士公開生平資料與專業命理學理製作</p>
+            <p class="text-xs mt-2">© 2025 AI 命理深度研究室</p>
+        </footer>
+
+    </main>
+</body>
+</html>
