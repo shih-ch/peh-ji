@@ -8,5 +8,7 @@ peh-jī
 - [清世宗_雍正皇帝](https://shih-ch.github.io/peh-ji/清世宗_雍正皇帝.html)
 - [清代堪輿宗師魏青江](https://shih-ch.github.io/peh-ji/清代堪輿宗師魏青江.html)
 - [貪財壞印白袍狂客](https://shih-ch.github.io/peh-ji/貪財壞印白袍狂客.html)
+- [金權策士](https://shih-ch.github.io/peh-ji/金權策士.html)
+
 
 網站入口：https://shih-ch.github.io/peh-ji/
